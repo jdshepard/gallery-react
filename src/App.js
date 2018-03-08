@@ -4,12 +4,13 @@ import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
 import $ from 'jquery'
 import * as d3 from 'd3'
+import moment from 'moment'
 // import superagent from 'superagent'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    const photosToLoad = 20
+    const photosToLoad = 50
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
     const pixelVsTimeFunc = null
@@ -62,7 +63,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="scrollDate">{this.state.scrollDate.valueOf()}</h1>
+        <h1 className="scrollDate">{moment(this.state.scrollDate).format('LT')}</h1>
         <Gallery photos={this.state.photos} setPixelVsTimeFunc={this.setPixelVsTimeFunc.bind(this)} />
       </div>
     )
