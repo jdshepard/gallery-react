@@ -8,12 +8,34 @@ import superagent from 'superagent';
 class App extends Component {
   constructor(props) {
     super(props);
+    const photosToLoad = 20;
+    const photos = this.makePhotosArray(photosToLoad);
+    this.state = {photos};
+  }
+
+  // setTimeout(() => {
+  //   this.setState((prevState, props) => {
+  //     console.log('doin it');
+  //     return {photos: prevState.photos.concat(this.makePhotosArray(25))};
+  //   });
+  // }, 10000)
+
+  makePhotosArray(numberToMake) {
+    let photos = [];
+    for(let i = 0; i < numberToMake; i++) {
+      const cachebust = Math.random().toString(36).substr(2, 5);
+      photos.push({
+        url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
+        timestamp: ''
+      });
+    }
+    return photos;
   }
 
   render() {
     return (
       <div>
-        <Gallery />
+        <Gallery photos={this.state.photos} />
       </div>
     );
   }
@@ -23,10 +45,6 @@ class Gallery extends Component {
 
   constructor(props) {
     super(props)
-    let photos = [];
-    for(let i = 0; i < 25; i++)
-      photos.push(`https://thecatapi.com/api/images/get?cachebust=${i}`);
-    this.state = {photos};
   }
 
   componentDidMount() {
@@ -36,15 +54,15 @@ class Gallery extends Component {
       columnWidth: '.gallery-columnSizer',
       percentPosition: true
     });
-    imagesLoaded(grid).on('done', () => {
+    imagesLoaded(grid).on('progress', () => {
       masonry.layout();
     });
   }
 
   render() {
-    var galleryTiles = this.state.photos.map((src) => {
+    var galleryTiles = this.props.photos.map((photo) => {
       return (
-        <GalleryTile src={src} key={src} />
+        <GalleryTile src={photo.url} key={photo.url} />
       )
     })
     return (
