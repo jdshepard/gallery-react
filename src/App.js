@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.someCallThatAddsPhotos, 15000)
+    setTimeout(() => {this.someCallThatAddsPhotos}, 15000)
   }
 
   someCallThatAddsPhotos() {
