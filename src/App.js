@@ -13,12 +13,15 @@ class App extends Component {
     this.state = {photos};
   }
 
-  // setTimeout(() => {
-  //   this.setState((prevState, props) => {
-  //     console.log('doin it');
-  //     return {photos: prevState.photos.concat(this.makePhotosArray(25))};
-  //   });
-  // }, 10000)
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState((prevState, props) => {
+        console.log('doin it');
+        return {photos: prevState.photos.concat(this.makePhotosArray(25))};
+      });
+    }, 15000)
+  }
+
 
   makePhotosArray(numberToMake) {
     let photos = [];
@@ -48,6 +51,15 @@ class Gallery extends Component {
   }
 
   componentDidMount() {
+    this.masonIt();
+  }
+
+  componentDidUpdate() {
+    console.log('updating');
+    this.masonIt();
+  }
+
+  masonIt() {
     var grid = document.querySelector('.gallery');
     var masonry = new Masonry(grid, {
       itemSelector: '.gallery-galleryTile',
