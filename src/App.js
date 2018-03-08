@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
 import './App.css'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
-import superagent from 'superagent'
+import $ from 'jquery'
+import * as d3 from 'd3'
+// import superagent from 'superagent'
 
 class App extends Component {
   constructor(props) {
@@ -12,16 +13,21 @@ class App extends Component {
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
     console.log(photos)
-    this.state = {photos}
+    const pixelVsTimeFunc = null
+    this.state = {photos, pixelVsTimeFunc}
+  }
+
+  setPixelVsTimeFunc(pixelVsTimeFunc) {
+    this.setState({pixelVsTimeFunc})
   }
 
   sortPhotos(photos) {
-    photos.sort((a, b) => { return a.timestamp - b.timestamp })
+    photos.sort((a, b) => { return b.timestamp - a.timestamp })
     return photos
   }
 
   componentDidMount() {
-    setTimeout(() => {this.someCallThatAddsPhotos}, 15000)
+    setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
   }
 
   someCallThatAddsPhotos() {
@@ -38,7 +44,7 @@ class App extends Component {
       const cachebust = Math.random().toString(36).substr(2, 5)
       photos.push({
         url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
-        timestamp: (new Date).valueOf() + parseInt(Math.random() * 20000)
+        timestamp: Date.now() + ~~(Math.random() * 20000)
       })
     }
     return photos
@@ -61,11 +67,24 @@ class Gallery extends Component {
 
   componentDidMount() {
     this.masonIt()
+    this.createPixelTimeFunction()
   }
 
   componentDidUpdate() {
     console.log('updating')
     this.masonIt()
+  }
+
+  createPixelTimeFunction() {
+    let pixelVsTime = {}
+    $('.gallery-galleryTile').each((i, tile) => {
+      const intFromTop = parseInt(tile.style.top, 10)
+      pixelVsTime[intFromTop] = this.props.photos[i].timestamp
+    })
+    const domain = Object.keys(pixelVsTime)
+    const range = Object.values(pixelVsTime)
+    const pixelVsTimeFunc = d3.scaleTime().domain(domain).range(range)
+    console.log(pixelVsTimeFunc)
   }
 
   masonIt() {
@@ -77,6 +96,8 @@ class Gallery extends Component {
     })
     imagesLoaded(grid).on('progress', () => {
       masonry.layout()
+    }).on('done', () => {
+      this.createPixelTimeFunction()
     })
   }
 
