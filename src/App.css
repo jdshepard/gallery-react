@@ -17,11 +17,19 @@
 .App-intro {
   font-size: large; }
 
-.gallery-columnSizer, .gallery-galleryTile {
-  width: 33.333%; }
-
 .gallery-galleryTile img {
   width: 100%; }
+
+.gallery-columnSizer, .gallery-galleryTile {
+  width: 100%; }
+
+@media only screen and (min-width: 480px) {
+  .gallery-columnSizer, .gallery-galleryTile {
+    width: 50%; } }
+
+@media only screen and (min-width: 720px) {
+  .gallery-columnSizer, .gallery-galleryTile {
+    width: 33.33333%; } }
 
 @keyframes App-logo-spin {
   from {
