@@ -34,7 +34,7 @@ class App extends Component {
 
   makePhotosArray(numberToMake) {
     let photos = []
-    for(let i = 0 i < numberToMake i++) {
+    for(let i = 0; i < numberToMake; i++) {
       const cachebust = Math.random().toString(36).substr(2, 5)
       photos.push({
         url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
