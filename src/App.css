@@ -29,6 +29,10 @@
 .gallery-columnSizer, .gallery-galleryTile {
   width: 100%; }
 
+.gallery-galleryTile {
+  box-sizing: border-box;
+  padding: 0.35rem; }
+
 .gallery-controls {
   position: fixed;
   box-sizing: border-box;
