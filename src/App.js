@@ -10,9 +10,14 @@ class App extends Component {
     super(props);
     const photosToLoad = 20;
     let photos = this.makePhotosArray(photosToLoad);
-    photos.sort((a, b) => { return a.timestamp - b.timestamp })
+    photos = this.sortPhotos(photos)
     console.log(photos)
     this.state = {photos};
+  }
+
+  sortPhotos(photos) {
+    photos.sort((a, b) => { return a.timestamp - b.timestamp })
+    return photos
   }
 
   componentDidMount() {
