@@ -8,34 +8,27 @@ import moment from 'moment'
 // import superagent from 'superagent'
 
 class App extends Component {
+  render() {
+    return (
+      <div>
+        <Gallery />
+      </div>
+    )
+  }
+}
+
+class Gallery extends Component {
+
   constructor(props) {
     super(props)
     const photosToLoad = 50
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
-    const pixelVsTimeFunc = null
-    const scrollDate = new Date()
-    this.state = {photos, pixelVsTimeFunc, scrollDate}
+    this.state = {photos}
   }
 
   componentDidMount() {
-    setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
-    console.log('scrolllisten')
-    $(document).off()
-    $(document).on('scroll', (e) => {
-      if (this.state.pixelVsTimeFunc) {
-        this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
-      }
-    })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('app update')
-  }
-
-  setPixelVsTimeFunc(pixelVsTimeFunc) {
-    console.log('update scroll func')
-    this.setState({pixelVsTimeFunc})
+    // setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
   }
 
   sortPhotos(photos) {
@@ -48,7 +41,6 @@ class App extends Component {
       return {photos: prevState.photos.concat(this.makePhotosArray(25))}
     })
   }
-
 
   makePhotosArray(numberToMake) {
     let photos = []
@@ -64,30 +56,41 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1 className="scrollDate">{moment(this.state.scrollDate).format('LT')}</h1>
-        <Gallery photos={this.state.photos} setPixelVsTimeFunc={this.setPixelVsTimeFunc.bind(this)} />
+      <div className="gallery">
+        <GalleryControls photos={this.state.photos} />
+        <GalleryTiles photos={this.state.photos} />
       </div>
     )
   }
 }
 
-class Gallery extends Component {
-
-  componentDidMount() {
-    this.masonIt()
-    this.functionIt()
-    this.props.setPixelVsTimeFunc(this.createPixelTimeFunction())
+class GalleryControls extends Component {
+  render() {
+    return (
+      <div className="gallery-controls">
+        <GalleryInfo photos={this.props.photos} />
+        <GalleryTimeControl photos={this.props.photos} />
+      </div>
+    )
   }
+}
 
-  componentDidUpdate() {
-    this.masonIt()
+class GalleryTimeControl extends Component {
+  componentDidMount() {
+    // $(document).off()
+    // $(document).on('scroll', (e) => {
+    //   if (this.state.pixelVsTimeFunc) {
+    //     this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
+    //   }
+    // })
+    // this.functionIt()
+    // this.setPixelVsTimeFunc(this.createPixelTimeFunction())
   }
 
   functionIt() {
     var grid = document.querySelector('.gallery')
     imagesLoaded(grid).on('always', () => {
-      this.props.setPixelVsTimeFunc(this.createPixelTimeFunction())
+      this.setPixelVsTimeFunc(this.createPixelTimeFunction())
     })
   }
 
@@ -95,7 +98,7 @@ class Gallery extends Component {
     let pixelVsTime = {}
     $('.gallery-galleryTile').each((i, tile) => {
       const intFromTop = parseInt(tile.style.top, 10)
-      pixelVsTime[intFromTop] = this.props.photos[i].timestamp
+      pixelVsTime[intFromTop] = this.state.photos[i].timestamp
     })
     const domain = Object.keys(pixelVsTime)
     const range = Object.values(pixelVsTime)
@@ -103,8 +106,32 @@ class Gallery extends Component {
     return pixelVsTimeFunc
   }
 
+  render() {
+    return (
+      <h1>time</h1>
+    )
+  }
+}
+
+class GalleryInfo extends Component {
+  render() {
+    return (
+      <h1>{this.props.photos.length}</h1>
+    )
+  }
+}
+
+class GalleryTiles extends Component {
+  componentDidMount() {
+    this.masonIt()
+  }
+
+  componentDidUpdate() {
+    this.masonIt()
+  }
+
   masonIt() {
-    var grid = document.querySelector('.gallery')
+    var grid = document.querySelector('.gallery-images')
     var masonry = new Masonry(grid, {
       itemSelector: '.gallery-galleryTile',
       columnWidth: '.gallery-columnSizer',
@@ -115,14 +142,10 @@ class Gallery extends Component {
     })
   }
 
-  render() {
-    var galleryTiles = this.props.photos.map((photo) => {
-      return (
-        <GalleryTile src={photo.url} key={photo.url} />
-      )
-    })
+  render () {
+    var galleryTiles = this.props.photos.map((photo) => {return (<GalleryTile src={photo.url} key={photo.url} />)})
     return (
-      <div className="gallery">
+      <div className="gallery-images">
         <div className="gallery-columnSizer"></div>
         {galleryTiles}
       </div>
