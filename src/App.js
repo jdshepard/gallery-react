@@ -12,9 +12,23 @@ class App extends Component {
     const photosToLoad = 20
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
-    console.log(photos)
     const pixelVsTimeFunc = null
-    this.state = {photos, pixelVsTimeFunc}
+    const scrollDate = new Date()
+    this.state = {photos, pixelVsTimeFunc, scrollDate}
+  }
+
+  componentDidMount() {
+    setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
+  }
+
+  componentDidUpdate() {
+    console.log('app update')
+    $(document).off()
+    $(document).on('scroll', (e) => {
+      if (this.state.pixelVsTimeFunc) {
+        this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
+      }
+    })
   }
 
   setPixelVsTimeFunc(pixelVsTimeFunc) {
@@ -26,13 +40,8 @@ class App extends Component {
     return photos
   }
 
-  componentDidMount() {
-    setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
-  }
-
   someCallThatAddsPhotos() {
     this.setState((prevState, props) => {
-      console.log('doin it')
       return {photos: prevState.photos.concat(this.makePhotosArray(25))}
     })
   }
@@ -44,7 +53,7 @@ class App extends Component {
       const cachebust = Math.random().toString(36).substr(2, 5)
       photos.push({
         url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
-        timestamp: Date.now() + ~~(Math.random() * 20000)
+        timestamp: new Date(Date.now() + ~~(Math.random() * 2000000))
       })
     }
     return photos
@@ -53,7 +62,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Gallery photos={this.state.photos} />
+        <h1 className="scrollDate">{this.state.scrollDate.valueOf()}</h1>
+        <Gallery photos={this.state.photos} setPixelVsTimeFunc={this.setPixelVsTimeFunc.bind(this)} />
       </div>
     )
   }
@@ -61,17 +71,12 @@ class App extends Component {
 
 class Gallery extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.masonIt()
-    this.createPixelTimeFunction()
+    this.props.setPixelVsTimeFunc(this.createPixelTimeFunction())
   }
 
   componentDidUpdate() {
-    console.log('updating')
     this.masonIt()
   }
 
@@ -84,7 +89,7 @@ class Gallery extends Component {
     const domain = Object.keys(pixelVsTime)
     const range = Object.values(pixelVsTime)
     const pixelVsTimeFunc = d3.scaleTime().domain(domain).range(range)
-    console.log(pixelVsTimeFunc)
+    return pixelVsTimeFunc
   }
 
   masonIt() {

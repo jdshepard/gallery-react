@@ -30,6 +30,14 @@
   width: 100%;
 }
 
+.scrollDate {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 @media only screen and (min-width: 480px) {
   .gallery-columnSizer, .gallery-galleryTile {
     width: 50%;
