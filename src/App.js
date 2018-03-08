@@ -20,10 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
-  }
-
-  componentDidUpdate() {
-    console.log('app update')
+    console.log('scrolllisten')
     $(document).off()
     $(document).on('scroll', (e) => {
       if (this.state.pixelVsTimeFunc) {
@@ -32,7 +29,12 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('app update')
+  }
+
   setPixelVsTimeFunc(pixelVsTimeFunc) {
+    console.log('update scroll func')
     this.setState({pixelVsTimeFunc})
   }
 
@@ -74,11 +76,19 @@ class Gallery extends Component {
 
   componentDidMount() {
     this.masonIt()
+    this.functionIt()
     this.props.setPixelVsTimeFunc(this.createPixelTimeFunction())
   }
 
   componentDidUpdate() {
     this.masonIt()
+  }
+
+  functionIt() {
+    var grid = document.querySelector('.gallery')
+    imagesLoaded(grid).on('always', () => {
+      this.props.setPixelVsTimeFunc(this.createPixelTimeFunction())
+    })
   }
 
   createPixelTimeFunction() {
@@ -102,8 +112,6 @@ class Gallery extends Component {
     })
     imagesLoaded(grid).on('progress', () => {
       masonry.layout()
-    }).on('done', () => {
-      this.createPixelTimeFunction()
     })
   }
 
