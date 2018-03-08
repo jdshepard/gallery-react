@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import './App.css';
+import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
@@ -21,6 +27,18 @@ class Gallery extends Component {
     }
   }
 
+  componentDidMount() {
+    var grid = document.querySelector('.gallery');
+    var masonry = new Masonry(grid, {
+      itemSelector: '.gallery-galleryTile',
+      columnWidth: '.gallery-columnSizer',
+      percentPosition: true
+    });
+    imagesLoaded(grid).on('done', () => {
+      masonry.layout();
+    });
+  }
+
   render() {
     var galleryTiles = this.state.photos.map((src) => {
       return (
@@ -28,7 +46,8 @@ class Gallery extends Component {
       )
     })
     return (
-      <div>
+      <div className="gallery">
+        <div className="gallery-columnSizer"></div>
         {galleryTiles}
       </div>
     )
