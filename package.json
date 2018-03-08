@@ -11,7 +11,8 @@
     "node-sass-chokidar": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "superagent": "^3.8.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
