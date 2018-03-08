@@ -3,6 +3,7 @@ import $ from 'jquery';
 import './App.css';
 import Masonry from 'masonry-layout';
 import imagesLoaded from 'imagesloaded';
+import superagent from 'superagent';
 
 class App extends Component {
   constructor(props) {
@@ -22,9 +23,10 @@ class Gallery extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      photos: ["/images/dave0.jpg","/images/dave1.jpg","/images/dave2.jpg","/images/dave3.jpg","/images/dave4.jpg","/images/dave5.jpg","/images/dave6.jpg","/images/dave7.jpg","/images/dave8.jpg","/images/dave9.jpg","/images/dave10.jpg","/images/dave11.jpg","/images/dave12.jpg","/images/dave13.jpg","/images/dave14.jpg","/images/dave15.jpg"]
-    }
+    let photos = [];
+    for(let i = 0; i < 25; i++)
+      photos.push(`https://thecatapi.com/api/images/get?cachebust=${i}`);
+    this.state = {photos};
   }
 
   componentDidMount() {
