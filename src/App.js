@@ -9,17 +9,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     const photosToLoad = 20;
-    const photos = this.makePhotosArray(photosToLoad);
+    let photos = this.makePhotosArray(photosToLoad);
+    photos.sort((a, b) => { return a.timestamp - b.timestamp })
+    console.log(photos)
     this.state = {photos};
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState((prevState, props) => {
-        console.log('doin it');
-        return {photos: prevState.photos.concat(this.makePhotosArray(25))};
-      });
-    }, 15000)
+    setTimeout(this.someCallThatAddsPhotos, 15000)
+  }
+
+  someCallThatAddsPhotos() {
+    this.setState((prevState, props) => {
+      console.log('doin it');
+      return {photos: prevState.photos.concat(this.makePhotosArray(25))};
+    });
   }
 
 
@@ -29,7 +33,7 @@ class App extends Component {
       const cachebust = Math.random().toString(36).substr(2, 5);
       photos.push({
         url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
-        timestamp: ''
+        timestamp: (new Date).valueOf() + parseInt(Math.random() * 20000)
       });
     }
     return photos;
