@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import $ from 'jquery';
-import './App.css';
-import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
-import superagent from 'superagent';
+import React, { Component } from 'react'
+import $ from 'jquery'
+import './App.css'
+import Masonry from 'masonry-layout'
+import imagesLoaded from 'imagesloaded'
+import superagent from 'superagent'
 
 class App extends Component {
   constructor(props) {
-    super(props);
-    const photosToLoad = 20;
-    let photos = this.makePhotosArray(photosToLoad);
+    super(props)
+    const photosToLoad = 20
+    let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
     console.log(photos)
-    this.state = {photos};
+    this.state = {photos}
   }
 
   sortPhotos(photos) {
@@ -26,22 +26,22 @@ class App extends Component {
 
   someCallThatAddsPhotos() {
     this.setState((prevState, props) => {
-      console.log('doin it');
-      return {photos: prevState.photos.concat(this.makePhotosArray(25))};
-    });
+      console.log('doin it')
+      return {photos: prevState.photos.concat(this.makePhotosArray(25))}
+    })
   }
 
 
   makePhotosArray(numberToMake) {
-    let photos = [];
-    for(let i = 0; i < numberToMake; i++) {
-      const cachebust = Math.random().toString(36).substr(2, 5);
+    let photos = []
+    for(let i = 0 i < numberToMake i++) {
+      const cachebust = Math.random().toString(36).substr(2, 5)
       photos.push({
         url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
         timestamp: (new Date).valueOf() + parseInt(Math.random() * 20000)
-      });
+      })
     }
-    return photos;
+    return photos
   }
 
   render() {
@@ -49,7 +49,7 @@ class App extends Component {
       <div>
         <Gallery photos={this.state.photos} />
       </div>
-    );
+    )
   }
 }
 
@@ -60,24 +60,24 @@ class Gallery extends Component {
   }
 
   componentDidMount() {
-    this.masonIt();
+    this.masonIt()
   }
 
   componentDidUpdate() {
-    console.log('updating');
-    this.masonIt();
+    console.log('updating')
+    this.masonIt()
   }
 
   masonIt() {
-    var grid = document.querySelector('.gallery');
+    var grid = document.querySelector('.gallery')
     var masonry = new Masonry(grid, {
       itemSelector: '.gallery-galleryTile',
       columnWidth: '.gallery-columnSizer',
       percentPosition: true
-    });
+    })
     imagesLoaded(grid).on('progress', () => {
-      masonry.layout();
-    });
+      masonry.layout()
+    })
   }
 
   render() {
@@ -113,4 +113,4 @@ class Photo extends Component {
   }
 }
 
-export default App;
+export default App
