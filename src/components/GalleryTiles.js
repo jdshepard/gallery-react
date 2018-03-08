@@ -25,7 +25,7 @@ class GalleryTiles extends Component {
   }
 
   render () {
-    var galleryTiles = this.props.photos.map((photo) => {return (<GalleryTile src={photo.url} key={photo.url} />)})
+    var galleryTiles = this.props.photos.map((photo, i) => {return (<GalleryTile src={photo.url} setShadowboxIndex={() => {this.props.setShadowboxIndex(i)}} key={photo.url} />)})
     return (
       <div className="gallery-images">
         <div className="gallery-columnSizer"></div>

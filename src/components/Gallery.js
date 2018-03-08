@@ -9,7 +9,12 @@ class Gallery extends Component {
     const photosToLoad = 50
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
-    this.state = {photos, shadowboxIndex: 0}
+    this.state = {photos, shadowboxIndex: -1}
+  }
+
+  setShadowboxIndex(shadowboxIndex) {
+    console.log(shadowboxIndex)
+    this.setState({shadowboxIndex})
   }
 
   componentDidMount() {
@@ -42,12 +47,12 @@ class Gallery extends Component {
   render() {
     let shadowBox = null
     if (this.state.shadowboxIndex >= 0)
-      shadowBox = <ShadowBox photos={this.state.photos} shadowboxIndex={this.state.shadowboxIndex} />
+      shadowBox = <ShadowBox photos={this.state.photos} shadowboxIndex={this.state.shadowboxIndex} closeShadowbox={() => this.setShadowboxIndex(-1)} />
     return (
       <div className="gallery">
         {shadowBox}
         <GalleryControls photos={this.state.photos} />
-        <GalleryTiles photos={this.state.photos} />
+        <GalleryTiles photos={this.state.photos} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
     )
   }
