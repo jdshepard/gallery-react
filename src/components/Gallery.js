@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import GalleryControls from './GalleryControls'
 import GalleryTiles from './GalleryTiles'
+import ShadowBox from './ShadowBox'
 
 class Gallery extends Component {
-
   constructor(props) {
     super(props)
     const photosToLoad = 50
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
-    this.state = {photos}
+    this.state = {photos, shadowboxIndex: 0}
   }
 
   componentDidMount() {
@@ -40,8 +40,12 @@ class Gallery extends Component {
   }
 
   render() {
+    let shadowBox = null
+    if (this.state.shadowboxIndex >= 0)
+      shadowBox = <ShadowBox photos={this.state.photos} shadowboxIndex={this.state.shadowboxIndex} />
     return (
       <div className="gallery">
+        {shadowBox}
         <GalleryControls photos={this.state.photos} />
         <GalleryTiles photos={this.state.photos} />
       </div>

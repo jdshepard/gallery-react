@@ -41,6 +41,45 @@
 .gallery-galleryTile {
   box-sizing: border-box;
   padding: 0.35rem;
+  cursor: pointer;
+}
+
+.gallery-shadowBox {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 3;
+}
+
+.gallery-shadowBox-hittarget {
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.gallery-shadowBox-content {
+  width: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: 3;
+}
+
+.gallery-shadowBox-content img {
+  width: 100%;
+  height: 100%;
 }
 
 .gallery-controls {
