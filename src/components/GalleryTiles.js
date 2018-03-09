@@ -8,12 +8,12 @@ import LoadedPhotoShower from '../lib/LoadedPhotoShower'
 class GalleryTiles extends Component {
 
   componentDidMount() {
-    this.masonIt()
+    // this.masonIt()
     this.loadedPhotoShower = new LoadedPhotoShower('.gallery-images', '.gallery-galleryTile')
   }
 
   componentDidUpdate() {
-    this.masonIt()
+    // this.masonIt()
   }
 
   masonIt() {
@@ -27,7 +27,7 @@ class GalleryTiles extends Component {
   }
 
   render() {
-    var galleryTiles = this.props.photos.map((photo, i) => {return (<GalleryTile src={photo.url} setShadowboxIndex={() => {this.props.setShadowboxIndex(i)}} key={photo.url} />)})
+    var galleryTiles = this.props.photoData.map((datum, i) => {return (<GalleryTile photoDatum={datum} setShadowboxIndex={() => {this.props.setShadowboxIndex(i)}} key={datum.id} />)})
     return (
       <div className="gallery-images">
         <div className="gallery-columnSizer"></div>

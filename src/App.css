@@ -31,8 +31,12 @@
 
 .gallery-galleryTile {
   box-sizing: border-box;
-  padding: 0.35rem;
-  cursor: pointer; }
+  padding: 0.5rem;
+  cursor: pointer;
+  float: left; }
+
+.gallery-galleryTile-image {
+  background-size: cover; }
 
 .gallery-shadowBox {
   position: fixed;

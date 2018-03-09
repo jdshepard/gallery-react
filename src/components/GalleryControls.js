@@ -6,8 +6,8 @@ class GalleryControls extends Component {
   render() {
     return (
       <div className="gallery-controls">
-        <GalleryInfo photos={this.props.photos} />
-        <GalleryTimeControl photos={this.props.photos} />
+        <GalleryInfo photoData={this.props.photoData} />
+        <GalleryTimeControl photoData={this.props.photoData} />
       </div>
     )
   }

@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import GalleryControls from './GalleryControls'
 import GalleryTiles from './GalleryTiles'
 import ShadowBox from './ShadowBox'
+import superagent from 'superagent'
 
 class Gallery extends Component {
   constructor(props) {
     super(props)
     const photosToLoad = 25
-    let photos = this.makePhotosArray(photosToLoad)
-    photos = this.sortPhotos(photos)
-    this.state = {photos, shadowboxIndex: -1}
+    let photoData = []
+    this.getPhotos()
+    let photos = []
+    this.state = {photos, photoData, shadowboxIndex: -1}
   }
 
   setShadowboxIndex(shadowboxIndex) {
@@ -21,9 +23,15 @@ class Gallery extends Component {
     // setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
   }
 
-  sortPhotos(photos) {
-    photos.sort((a, b) => { return b.timestamp - a.timestamp })
-    return photos
+  getPhotos() {
+    superagent
+      .get('http://localhost:4000/photos')
+      .end((err, res) => {
+        this.setState((prevState, props) => {
+          return {photoData: res.body}
+        })
+        console.log(res.body)
+      })
   }
 
   someCallThatAddsPhotos() {
@@ -47,12 +55,12 @@ class Gallery extends Component {
   render() {
     let shadowBox = null
     if (this.state.shadowboxIndex >= 0)
-      shadowBox = <ShadowBox photos={this.state.photos} shadowboxIndex={this.state.shadowboxIndex} closeShadowbox={() => this.setShadowboxIndex(-1)} />
+      shadowBox = <ShadowBox photoData={this.state.photoData} shadowboxIndex={this.state.shadowboxIndex} closeShadowbox={() => this.setShadowboxIndex(-1)} />
     return (
       <div className="gallery">
         {shadowBox}
-        <GalleryControls photos={this.state.photos} />
-        <GalleryTiles photos={this.state.photos} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
+        <GalleryControls photoData={this.state.photoData} />
+        <GalleryTiles photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
     )
   }
