@@ -82,6 +82,13 @@
 .gallery-controls-time {
   font-family: 'Orbitron', sans-serif; }
 
+.gallery-galleryTile {
+  transition: opacity 0.5s ease-out;
+  opacity: 1; }
+
+.gallery-galleryTile-loading {
+  opacity: 0; }
+
 @media only screen and (min-width: 480px) {
   .gallery-columnSizer, .gallery-galleryTile {
     width: 50%; } }

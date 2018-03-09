@@ -6,7 +6,7 @@ import ShadowBox from './ShadowBox'
 class Gallery extends Component {
   constructor(props) {
     super(props)
-    const photosToLoad = 50
+    const photosToLoad = 25
     let photos = this.makePhotosArray(photosToLoad)
     photos = this.sortPhotos(photos)
     this.state = {photos, shadowboxIndex: -1}
