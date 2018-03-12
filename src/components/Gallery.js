@@ -15,7 +15,6 @@ class Gallery extends Component {
   }
 
   setShadowboxIndex(shadowboxIndex) {
-    console.log(shadowboxIndex)
     this.setState({shadowboxIndex})
   }
 
