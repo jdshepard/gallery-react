@@ -4,29 +4,35 @@ import $ from 'jquery'
 import * as d3 from 'd3'
 
 class GalleryTimeControl extends Component {
-  componentDidMount() {
-    // $(document).off()
-    // $(document).on('scroll', (e) => {
-    //   if (this.state.pixelVsTimeFunc) {
-    //     this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
-    //   }
-    // })
-    // this.functionIt()
-    // this.setPixelVsTimeFunc(this.createPixelTimeFunction())
+  constructor(props) {
+    super(props)
+    this.state = {pixelVsTimeFunc: null, scrollDate: 'loading'}
   }
 
-  functionIt() {
+  componentDidMount() {
+    this.setFunction()
+    $(document).off()
+    $(document).on('scroll', (e) => {
+      if (this.state.pixelVsTimeFunc) {
+        this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
+      }
+    })
+  }
+
+  setFunction() {
     var grid = document.querySelector('.gallery')
     imagesLoaded(grid).on('always', () => {
-      this.setPixelVsTimeFunc(this.createPixelTimeFunction())
+      console.log('loaded')
+      this.setState({pixelVsTimeFunc: this.createPixelTimeFunction()})
+      console.log(this.state.pixelVsTimeFunc)
     })
   }
 
   createPixelTimeFunction() {
     let pixelVsTime = {}
     $('.gallery-galleryTile').each((i, tile) => {
-      const intFromTop = parseInt(tile.style.top, 10)
-      pixelVsTime[intFromTop] = this.state.photos[i].timestamp
+      const intFromTop = parseInt($(tile).position().top, 10)
+      pixelVsTime[intFromTop] = new Date(this.props.photoData[i].timestamp)
     })
     const domain = Object.keys(pixelVsTime)
     const range = Object.values(pixelVsTime)
@@ -36,7 +42,7 @@ class GalleryTimeControl extends Component {
 
   render() {
     return (
-      <h1>time</h1>
+      <h1>{`time: ${this.state.scrollDate}`}</h1>
     )
   }
 }
