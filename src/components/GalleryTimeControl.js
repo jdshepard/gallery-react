@@ -48,12 +48,13 @@ class GalleryTimeControl extends Component {
   }
 
   render() {
+    const currentMoment = moment(new Date(this.state.scrollDate))
     return (
       <div>
         <b>date</b>
-        <p>{moment(this.state.scrollDate).format('MMMM Do YYYY')}</p>
+        <p>{currentMoment.format('MMMM Do YYYY')}</p>
         <b>time</b>
-        <p>{moment(this.state.scrollDate).format('h:mm:ss a')}</p>
+        <p>{currentMoment.format('h:mm:ss a')}</p>
       </div>
     )
   }

@@ -16,7 +16,7 @@ class LoadedPhotoShower {
     this.loadedIndices.push(index)
     this.loadedIndices.sort((a, b) => { return a-b })
     for(let i = 0; i < this.loadedIndices.length; i++)
-      if(this.loadedIndices[i] == i + 1)
+      if(this.loadedIndices[i] === i + 1)
         this.showImageAtIndex(i)
       else
         break

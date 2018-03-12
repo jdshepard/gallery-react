@@ -7,7 +7,6 @@ import superagent from 'superagent'
 class Gallery extends Component {
   constructor(props) {
     super(props)
-    const photosToLoad = 25
     let photoData = []
     this.getPhotos()
     let photos = []

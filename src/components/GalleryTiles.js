@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import GalleryTile from './GalleryTile'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
-import $ from 'jquery'
 import LoadedPhotoShower from '../lib/LoadedPhotoShower'
 
 class GalleryTiles extends Component {
