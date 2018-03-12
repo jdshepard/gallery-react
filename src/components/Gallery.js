@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import GalleryControls from './GalleryControls'
 import GalleryTiles from './GalleryTiles'
 import ShadowBox from './ShadowBox'
-import superagent from 'superagent'
 
 class Gallery extends Component {
   constructor(props) {
     super(props)
     let photoData = []
-    this.getPhotos()
-    let photos = []
-    this.state = {photos, photoData, shadowboxIndex: -1}
+    this.state = {photoData, shadowboxIndex: -1}
   }
 
   setShadowboxIndex(shadowboxIndex) {
@@ -18,36 +15,12 @@ class Gallery extends Component {
   }
 
   componentDidMount() {
-    // setTimeout(() => {this.someCallThatAddsPhotos()}, 15000)
+    this.getPhotos()
   }
 
   getPhotos() {
-    superagent
-      .get('http://localhost:4000/photos')
-      .end((err, res) => {
-        this.setState((prevState, props) => {
-          return {photoData: res.body}
-        })
-        console.log(res.body)
-      })
-  }
-
-  someCallThatAddsPhotos() {
-    this.setState((prevState, props) => {
-      return {photos: prevState.photos.concat(this.makePhotosArray(25))}
-    })
-  }
-
-  makePhotosArray(numberToMake) {
-    let photos = []
-    for(let i = 0; i < numberToMake; i++) {
-      const cachebust = Math.random().toString(36).substr(2, 5)
-      photos.push({
-        url: `https://thecatapi.com/api/images/get?cachebust=${cachebust}`,
-        timestamp: new Date(Date.now() + ~~(Math.random() * 2000000))
-      })
-    }
-    return photos
+    const photoData = require('../data/smilebooth_mock_server.json').photos
+    this.setState({photoData})
   }
 
   render() {

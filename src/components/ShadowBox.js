@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 class ShadowBox extends Component {
   render() {
     const photoDatum = this.props.photoData[this.props.shadowboxIndex]
-    console.log(photoDatum)
     const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
     let media = ''
     if (extension === 'mp4') {

@@ -27,9 +27,7 @@ class GalleryTimeControl extends Component {
   setFunction() {
     var grid = document.querySelector('.gallery')
     imagesLoaded(grid).on('always', () => {
-      console.log('loaded')
       this.setState((prevState, props) => {
-        console.log('set')
         return {pixelVsTimeFunc: this.createPixelTimeFunction()}
       }, this.setTime)
     })
