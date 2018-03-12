@@ -13,18 +13,24 @@ class GalleryTimeControl extends Component {
     this.setFunction()
     $(document).off()
     $(document).on('scroll', (e) => {
-      if (this.state.pixelVsTimeFunc) {
-        this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
-      }
+      this.setTime()
     })
+  }
+
+  setTime() {
+  if (this.state.pixelVsTimeFunc) {
+      this.setState({scrollDate: this.state.pixelVsTimeFunc($(document).scrollTop())})
+    }
   }
 
   setFunction() {
     var grid = document.querySelector('.gallery')
     imagesLoaded(grid).on('always', () => {
       console.log('loaded')
-      this.setState({pixelVsTimeFunc: this.createPixelTimeFunction()})
-      console.log(this.state.pixelVsTimeFunc)
+      this.setState((prevState, props) => {
+        console.log('set')
+        return {pixelVsTimeFunc: this.createPixelTimeFunction()}
+      }, this.setTime)
     })
   }
 

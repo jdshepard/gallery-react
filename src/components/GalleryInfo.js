@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class GalleryInfo extends Component {
   render() {
     return (
-      <h1>{this.props.photoData.length}</h1>
+      <div>
+        <p>Dave's Wedding</p>
+        <p>{this.props.photoData.length} photos</p>
+      </div>
     )
   }
 }
