@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import imagesLoaded from 'imagesloaded'
 import $ from 'jquery'
 import * as d3 from 'd3'
+import moment from 'moment'
 
 class GalleryTimeControl extends Component {
   constructor(props) {
@@ -48,7 +49,12 @@ class GalleryTimeControl extends Component {
 
   render() {
     return (
-      <h1>{`time: ${this.state.scrollDate}`}</h1>
+      <div>
+        <b>date</b>
+        <p>{moment(this.state.scrollDate).format('MMMM Do YYYY')}</p>
+        <b>time</b>
+        <p>{moment(this.state.scrollDate).format('h:mm:ss a')}</p>
+      </div>
     )
   }
 }
