@@ -23,7 +23,13 @@
 }
 
 .gallery {
-  padding-left: 20%;
+  padding-left: 0;
+}
+
+@media only screen and (min-width: 480px) {
+  .gallery {
+    padding-left: 20%;
+  }
 }
 
 .gallery-galleryTile img {
@@ -92,11 +98,22 @@
   box-sizing: border-box;
   padding: 1em;
   z-index: 1;
-  top: 0;
-  left: 0;
-  width: 20%;
-  height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+
+}
+
+@media only screen and (min-width: 480px) {
+  .gallery-controls {
+    top: 0;
+    left: 0;
+    bottom: auto;
+    width: 20%;
+    height: 100%;
+  }
 }
 
 .gallery-controls-module {
@@ -124,6 +141,12 @@
 @media only screen and (min-width: 720px) {
   .gallery-columnSizer, .gallery-galleryTile {
     width: 33.33333%;
+  }
+}
+
+@media only screen and (min-width: 1020px) {
+  .gallery-columnSizer, .gallery-galleryTile {
+    width: 25%;
   }
 }
 
