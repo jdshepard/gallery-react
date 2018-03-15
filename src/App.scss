@@ -27,16 +27,6 @@ h2 {
   font-weight: 500;
 }
 
-.gallery {
-  padding-left: 0;
-}
-
-@media only screen and (min-width: 720px) {
-  .gallery {
-    padding-left: 13.5rem;
-  }
-}
-
 .gallery-galleryTile img {
   width: 100%;
 }
@@ -95,33 +85,33 @@ h2 {
 }
 
 .gallery-controls {
-  color: white;
   position: fixed;
+  height: 5rem;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  color: white;
   box-sizing: border-box;
   padding: 1em;
   z-index: 1;
   background-color: black;
-  bottom: 0;
-  left: 0;
-  height: 25%;
-  width: 100%;
+}
+
+.gallery-controls header {
+  float: left;
+}
+
+.gallery-info {
+  float: left;
+}
+
+.gallery-controls-logo {
+  width: 9rem;
 }
 
 .gallery-controls-logo img {
   width: 100%;
-}
-
-@media only screen and (min-width: 720px) {
-  .gallery-controls {
-    top: 0;
-    left: 0;
-    bottom: auto;
-    width: 13.5rem;
-    height: 100%;
-  }
-}
-
-.gallery-controls-module {
 }
 
 .gallery-controls-time {
