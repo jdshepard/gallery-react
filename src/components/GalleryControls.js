@@ -7,13 +7,15 @@ class GalleryControls extends Component {
   render() {
     return (
       <div className="gallery-controls">
-        <header>
-          <div className="gallery-controls-logo">
-            <img src={smileboothLogo} alt="Smilebooth Logo" />
-          </div>
-        </header>
-        <GalleryInfo photoData={this.props.photoData} />
-        <GalleryTimeControl photoData={this.props.photoData} />
+        <div className="gallery-controls-content">
+          <header>
+            <div className="gallery-controls-logo">
+              <img src={smileboothLogo} alt="Smilebooth Logo" />
+            </div>
+          </header>
+          <GalleryInfo photoData={this.props.photoData} />
+          <GalleryTimeControl photoData={this.props.photoData} />
+        </div>
       </div>
     )
   }
