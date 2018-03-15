@@ -113,6 +113,19 @@ h2 {
   transform: translate(0, -50%);
 }
 
+@media only screen and (max-width: 620px) {
+  .gallery-controls header {
+    position: relative;
+    top: 0;
+    transform: none;
+    text-align: center;
+  }
+
+  .gallery-controls-logo {
+    margin: 0.25rem;
+  }
+}
+
 .gallery-controls nav {
   display: inline-block;
 }
@@ -123,6 +136,7 @@ h2 {
 }
 
 .gallery-controls-logo {
+  display: inline-block;
   width: 9rem;
 }
 
