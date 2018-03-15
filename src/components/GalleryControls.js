@@ -13,8 +13,10 @@ class GalleryControls extends Component {
               <img src={smileboothLogo} alt="Smilebooth Logo" />
             </div>
           </header>
-          <GalleryInfo photoData={this.props.photoData} />
-          <GalleryTimeControl photoData={this.props.photoData} />
+          <nav>
+            <GalleryInfo photoData={this.props.photoData} />
+            <GalleryTimeControl photoData={this.props.photoData} />
+          </nav>
         </div>
       </div>
     )

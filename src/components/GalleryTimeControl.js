@@ -48,9 +48,9 @@ class GalleryTimeControl extends Component {
   render() {
     const currentMoment = moment(new Date(this.state.scrollDate))
     return (
-      <div className="gallery-info gallery-info-time">
-        <span>{currentMoment.format('MMMM Do YYYY')}</span>
-        <span>{currentMoment.format('h:mm:ss a')}</span>
+      <div>
+        <span className="gallery-info gallery-info-date"><i className="fas fa-calendar-alt"></i><span className="gallery-info-datum">{currentMoment.format('M/D/YY')}</span></span>
+        <span className="gallery-info gallery-info-time"><i className="fas fa-clock"></i><span className="gallery-info-datum">{currentMoment.format('hh:mm a')}</span></span>
       </div>
     )
   }
