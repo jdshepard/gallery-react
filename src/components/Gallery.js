@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GalleryControls from './GalleryControls'
 import GalleryTiles from './GalleryTiles'
 import ShadowBox from './ShadowBox'
+import { Route } from 'react-router-dom'
 
 class Gallery extends Component {
   constructor(props) {
@@ -24,12 +25,9 @@ class Gallery extends Component {
   }
 
   render() {
-    let shadowBox = null
-    if (this.state.shadowboxIndex >= 0)
-      shadowBox = <ShadowBox photoData={this.state.photoData} shadowboxIndex={this.state.shadowboxIndex} closeShadowbox={() => this.setShadowboxIndex(-1)} />
     return (
       <div className="gallery">
-        {shadowBox}
+        <Route path="/photos/:id" render={ ({ match }) => { return <ShadowBox photoDatum={this.state.photoData[match.params.id]} /> }} />
         <GalleryControls photoData={this.state.photoData} />
         <GalleryTiles photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
