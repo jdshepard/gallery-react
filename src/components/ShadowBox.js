@@ -14,7 +14,7 @@ class ShadowBox extends Component {
     }
     return (
       <div className="gallery-shadowBox">
-        <Link to="/"><div className="gallery-shadowBox-hittarget"></div></Link>
+        <Link to="/smilebooth-gallery-react"><div className="gallery-shadowBox-hittarget"></div></Link>
         <div className="gallery-shadowBox-content">
           {media}
         </div>
