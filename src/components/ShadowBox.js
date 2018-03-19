@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import superagent from 'superagent'
 
 class ShadowBox extends Component {
   render() {
@@ -17,11 +18,13 @@ class ShadowBox extends Component {
         <Link to="/smilebooth-gallery-react"><div className="gallery-shadowBox-hittarget"></div></Link>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
-            <li className="gallery-toolbox-action action-exit">
-              <div className="toolbox-action-iconHolder">
-                <i className="fas fa-times"></i>
-              </div>
-            </li>
+            <Link to="/smilebooth-gallery-react">
+              <li className="gallery-toolbox-action action-exit">
+                <div className="toolbox-action-iconHolder" onClick={this.props.closeShadowbox}>
+                  <i className="fas fa-times"></i>
+                </div>
+              </li>
+            </Link>
             <li className="gallery-toolbox-action">
               <div className="toolbox-action-iconHolder">
                 <i className="fas fa-envelope"></i>
