@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import superagent from 'superagent'
+import ShadowboxShare from './ShadowboxShare'
 
 class ShadowBox extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      shareType: null
+    }
+  }
+
+  share(shareType) {
+    this.setState({shareType})
+  }
+
   render() {
     const photoDatum = this.props.photoDatum
-    console.log(photoDatum)
     const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
     let media = ''
     if (extension === 'mp4') {
@@ -13,6 +24,10 @@ class ShadowBox extends Component {
     } else {
       media = <div className="img" style={{backgroundImage: `url('${photoDatum.url}')`}}></div>
     }
+
+    let shadowboxShare = null
+    if (this.state.shareType)
+      shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
         <Link to="/smilebooth-gallery-react"><div className="gallery-shadowBox-hittarget"></div></Link>
@@ -21,18 +36,18 @@ class ShadowBox extends Component {
             <Link to="/smilebooth-gallery-react">
               <li className="gallery-toolbox-action action-exit">
                 <div className="toolbox-action-iconHolder" onClick={this.props.closeShadowbox}>
-                  <i className="fas fa-times"></i>
+                  <i className="far fa-times-circle"></i>
                 </div>
               </li>
             </Link>
-            <li className="gallery-toolbox-action">
+            <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
               <div className="toolbox-action-iconHolder">
-                <i className="fas fa-envelope"></i>
+                <i className="far fa-envelope"></i>
               </div>
             </li>
             <li className="gallery-toolbox-action">
               <div className="toolbox-action-iconHolder">
-                <i className="fas fa-comments"></i>
+                <i className="far fa-comment"></i>
               </div>
             </li>
           </ul>
@@ -42,20 +57,7 @@ class ShadowBox extends Component {
           <div className="gallery-shadowBox-media">
             {media}
           </div>
-          <div className="gallery-shadowBox-share">
-            <div className="shadowBox-share-container">
-              <div className="shadowBox-share">
-                <header><h2>Email</h2></header>
-                <form>
-                  <label>To Email</label>
-                  <fieldset>
-                    <input name="toEmail" type="text" placeholder="recipient email" />
-                    </fieldset>
-                  <input type="submit" value="send!" />
-                </form>
-              </div>
-            </div>
-          </div>
+          {shadowboxShare}
           <div className="gallery-shadowBox-navigation">
             <div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="fas fa-angle-left"></i></div>
             <div className="shadowBox-navigation shadowBox-navigationNext"><i className="fas fa-angle-right"></i></div>
