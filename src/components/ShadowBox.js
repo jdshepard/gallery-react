@@ -42,6 +42,20 @@ class ShadowBox extends Component {
           <div className="gallery-shadowBox-media">
             {media}
           </div>
+          <div className="gallery-shadowBox-share">
+            <div className="shadowBox-share-container">
+              <div className="shadowBox-share">
+                <header><h2>Email</h2></header>
+                <form>
+                  <label>To Email</label>
+                  <fieldset>
+                    <input name="toEmail" type="text" placeholder="recipient email" />
+                    </fieldset>
+                  <input type="submit" value="send!" />
+                </form>
+              </div>
+            </div>
+          </div>
           <div className="gallery-shadowBox-navigation">
             <div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="fas fa-angle-left"></i></div>
             <div className="shadowBox-navigation shadowBox-navigationNext"><i className="fas fa-angle-right"></i></div>

@@ -5,6 +5,25 @@ body {
   font-family: "sofia-pro";
 }
 
+input {
+  font-size: 1rem;
+}
+
+input[type=submit] {
+  border-radius: 0;
+  border: 0;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 2rem 0.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+fieldset {
+  display: block;
+  border: 0;
+}
+
 h2 {
   font-family: 'sofia-pro';
   font-style: normal;
@@ -104,6 +123,35 @@ h2 {
   margin-left: -35px;
   top: 50%;
   margin-top: -35px;
+}
+
+.gallery-shadowBox-share {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.shadowBox-share {
+  background-color: white;
+  width: 50%;
+  margin: 30% auto;
+  padding: 3%;
+
+  form {
+    label {
+      display: none;
+    }
+    input[type=text] {
+      width: 100%;
+    }
+    fieldset {
+      padding: 1rem;
+    }
+  }
 }
 
 .gallery-toolbox {
