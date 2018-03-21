@@ -35,7 +35,7 @@ class EmailShare extends Component {
           <fieldset>
             <input name="toEmail" type="email" placeholder="recipient email" value={this.state.shareToEmail} onChange={this.updateShareform.bind(this)} />
             </fieldset>
-          <input type="submit" value="send!" />
+          <input type="submit" value="SEND" />
         </form>
       </div>
     )

@@ -36,7 +36,7 @@ class MMSShare extends Component {
           <fieldset>
             <input name="toPhone" type="tel" placeholder="recipient phone number" value={this.state.shareToPhone} onChange={this.updateShareform.bind(this)} />
             </fieldset>
-          <input type="submit" value="send!" />
+          <input type="submit" value="SEND" />
         </form>
       </div>
     )
