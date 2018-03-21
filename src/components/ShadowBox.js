@@ -26,7 +26,9 @@ class ShadowBox extends Component {
     }
 
     let shadowboxShare = null
-    if (this.state.shareType)
+    if (this.state.shareType === 'email')
+      shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
+    else if (this.state.shareType === 'mms')
       shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
@@ -38,7 +40,7 @@ class ShadowBox extends Component {
                 <i className="far fa-envelope"></i>
               </div>
             </li>
-            <li className="gallery-toolbox-action">
+            <li className="gallery-toolbox-action" onClick={() => { this.share('mms') }}>
               <div className="toolbox-action-iconHolder">
                 <i className="far fa-comment"></i>
               </div>

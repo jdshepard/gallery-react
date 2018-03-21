@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import superagent from 'superagent'
 
-class EmailShare extends Component {
+class MMSShare extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      shareToEmail: ''
+      shareToPhone: ''
     }
   }
 
   updateShareform(e) {
-    this.setState({shareToEmail: e.target.value})
+    this.setState({shareToPhone: e.target.value})
   }
 
   submit(e) {
@@ -28,11 +28,11 @@ class EmailShare extends Component {
   render() {
     return (
       <div>
-        <header><h2>Email</h2></header>
+        <header><h2>MMS</h2></header>
         <form onSubmit={this.submit.bind(this)}>
-          <label>To Email</label>
+          <label>To Phone</label>
           <fieldset>
-            <input name="toEmail" type="text" placeholder="recipient email" value={this.state.shareToEmail} onChange={this.updateShareform.bind(this)} />
+            <input name="toPhone" type="text" placeholder="recipient phone number" value={this.state.shareToPhone} onChange={this.updateShareform.bind(this)} />
             </fieldset>
           <input type="submit" value="send!" />
         </form>
@@ -41,4 +41,4 @@ class EmailShare extends Component {
   }
 }
 
-export default EmailShare
+export default MMSShare

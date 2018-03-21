@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EmailShare from './EmailShare'
+import MMSShare from './MMSShare'
 import ShareLoading from './ShareLoading'
 
 class ShadowboxShare extends Component {
@@ -13,11 +14,11 @@ class ShadowboxShare extends Component {
   }
 
   shareResponse(err, res) {
-    this.setLoading(false)
+    this.setState({loading: false})
     if (err) {
-      console.log('error')
+      this.setState({failure: true})
     } else {
-      console.log('success')
+      this.setState({success: true})
     }
   }
 
@@ -30,22 +31,20 @@ class ShadowboxShare extends Component {
     if(this.state.loading) {
       shareContent = <ShareLoading />
     } else if (this.state.success) {
-      shareContent = <h2>Success!</h2>
+      shareContent = <h2>Photo shared!</h2>
     } else if (this.state.failure) {
       shareContent = <h2>Could not complete your request :(</h2>
-    } else {
+    } else if (this.props.shareType === 'email') {
       shareContent = <EmailShare shareResponse={this.shareResponse.bind(this)} setLoading={this.setLoading.bind(this)} />
+    } else if (this.props.shareType === 'mms') {
+      shareContent = <MMSShare shareResponse={this.shareResponse.bind(this)} setLoading={this.setLoading.bind(this)} />
     }
     return (
       <div>
-        <div className="gallery-shadowBox-shareClose"></div>
-        <div className="gallery-shadowBox-share">
-          <div className="shadowBox-share-container">
-            <div className="shadowBox-share">
-              <div className="shadowBox-share-close" onClick={() => { this.props.closeShare() }}><i className="fas fa-times"></i></div>
-              {shareContent}
-            </div>
-          </div>
+        <div className="gallery-shadowBox-shareClose" onClick={() => { this.props.closeShare() }}></div>
+        <div className="shadowBox-share">
+          <div className="shadowBox-share-close" onClick={() => { this.props.closeShare() }}><i className="fas fa-times"></i></div>
+          {shareContent}
         </div>
       </div>
     )
