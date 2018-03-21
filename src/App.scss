@@ -165,7 +165,7 @@ h2 {
     label {
       display: none;
     }
-    input[type=text] {
+    input[type=tel], input[type=email] {
       width: 100%;
     }
     fieldset {

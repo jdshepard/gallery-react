@@ -10,7 +10,9 @@ class MMSShare extends Component {
   }
 
   updateShareform(e) {
-    this.setState({shareToPhone: e.target.value})
+    let phoneNumber = e.target.value
+    phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
+    this.setState({shareToPhone: phoneNumber})
   }
 
   submit(e) {
@@ -32,7 +34,7 @@ class MMSShare extends Component {
         <form onSubmit={this.submit.bind(this)}>
           <label>To Phone</label>
           <fieldset>
-            <input name="toPhone" type="text" placeholder="recipient phone number" value={this.state.shareToPhone} onChange={this.updateShareform.bind(this)} />
+            <input name="toPhone" type="tel" placeholder="recipient phone number" value={this.state.shareToPhone} onChange={this.updateShareform.bind(this)} />
             </fieldset>
           <input type="submit" value="send!" />
         </form>
