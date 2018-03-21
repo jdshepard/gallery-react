@@ -30,16 +30,9 @@ class ShadowBox extends Component {
       shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
-        <Link to="/smilebooth-gallery-react"><div className="gallery-shadowBox-hittarget"></div></Link>
+        <div className="shadowBox-close"><Link to="/smilebooth-gallery-react"><i className="fas fa-times"></i></Link></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
-            <Link to="/smilebooth-gallery-react">
-              <li className="gallery-toolbox-action action-exit">
-                <div className="toolbox-action-iconHolder" onClick={this.props.closeShadowbox}>
-                  <i className="far fa-times-circle"></i>
-                </div>
-              </li>
-            </Link>
             <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
               <div className="toolbox-action-iconHolder">
                 <i className="far fa-envelope"></i>
@@ -59,8 +52,8 @@ class ShadowBox extends Component {
           </div>
           {shadowboxShare}
           <div className="gallery-shadowBox-navigation">
-            <div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="fas fa-angle-left"></i></div>
-            <div className="shadowBox-navigation shadowBox-navigationNext"><i className="fas fa-angle-right"></i></div>
+            <div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div>
+            <div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div>
           </div>
         </div>
       </div>
