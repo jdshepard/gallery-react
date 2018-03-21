@@ -17,12 +17,16 @@ class ShadowBox extends Component {
 
   render() {
     const photoDatum = this.props.photoDatum
-    const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
-    let media = ''
-    if (extension === 'mp4') {
-      media = <video src={photoDatum.url} autoPlay loop alt="" />
+    let media = null
+    if (photoDatum) {
+      const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
+      if (extension === 'mp4') {
+        media = <video src={photoDatum.url} autoPlay loop alt="" />
+      } else {
+        media = <div className="img" style={{backgroundImage: `url('${photoDatum.url}')`}}></div>
+      }
     } else {
-      media = <div className="img" style={{backgroundImage: `url('${photoDatum.url}')`}}></div>
+      media = <i>loading</i>
     }
 
     let shadowboxShare = null
