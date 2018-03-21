@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ShadowboxShare from './ShadowboxShare'
+import closeIcon from '../images/close-icon.svg'
 
 class ShadowBox extends Component {
 

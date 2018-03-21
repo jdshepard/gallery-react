@@ -174,18 +174,11 @@ h2 {
   }
 }
 
-.shadowBox-close {
+.shadowBox-close, .shadowBox-share-close {
   position: absolute;
-  top: 0rem;
-  right: 0rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-}
-
-.shadowBox-share-close {
-  position: absolute;
-  top: 0rem;
-  right: 0rem;
+  top: 0;
+  right: 0;
+  z-index: 10;
   cursor: pointer;
   padding: 0.5rem 1rem;
 
@@ -199,6 +192,17 @@ h2 {
     .svg-inline--fa {
       color: red;
     }
+  }
+}
+
+.shadowBox-close {
+  top: 1rem;
+  right: 1rem;
+  padding: 0;
+
+  .svg-inline--fa {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
