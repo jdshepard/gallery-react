@@ -35,9 +35,9 @@ class ShadowboxShare extends Component {
     } else if (this.state.failure) {
       shareContent = <h2>Could not complete your request :(</h2>
     } else if (this.props.shareType === 'email') {
-      shareContent = <EmailShare shareResponse={this.shareResponse.bind(this)} setLoading={this.setLoading.bind(this)} />
+      shareContent = <EmailShare shareResponse={this.shareResponse.bind(this)} photoDatum={this.props.photoDatum} setLoading={this.setLoading.bind(this)} />
     } else if (this.props.shareType === 'mms') {
-      shareContent = <MMSShare shareResponse={this.shareResponse.bind(this)} setLoading={this.setLoading.bind(this)} />
+      shareContent = <MMSShare shareResponse={this.shareResponse.bind(this)} photoDatum={this.props.photoDatum} setLoading={this.setLoading.bind(this)} />
     }
     return (
       <div>

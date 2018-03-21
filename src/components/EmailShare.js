@@ -7,6 +7,7 @@ class EmailShare extends Component {
     this.state = {
       shareToEmail: ''
     }
+    console.log(this.props.photoDatum)
   }
 
   updateShareform(e) {
@@ -18,8 +19,8 @@ class EmailShare extends Component {
     this.props.setLoading(true)
     superagent.post('https://v4-api.smilebooth.com/api/v4/sharers/email/share')
       .send({
-        email: "jake.mchargue@gmail.com",
-        uploadId: "17940",
+        email: this.state.shareToEmail,
+        uploadId: `${this.props.photoDatum.id}`,
         galleryId: "3"
       })
       .end(this.props.shareResponse)

@@ -42,9 +42,9 @@ class ShadowBox extends Component {
 
     let shadowboxShare = null
     if (this.state.shareType === 'email')
-      shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
+      shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     else if (this.state.shareType === 'mms')
-      shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
+      shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
         <div className="shadowBox-close"><Link to="/smilebooth-gallery-react"></Link><object type="image/svg+xml" data={CloseIcon}></object></div>
