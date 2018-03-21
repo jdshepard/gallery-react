@@ -47,7 +47,7 @@ class ShadowBox extends Component {
       shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
-        <div className="shadowBox-close"><Link to="/smilebooth-gallery-react"><object type="image/svg+xml" data={CloseIcon}></object></Link></div>
+        <div className="shadowBox-close"><Link to="/smilebooth-gallery-react"></Link><object type="image/svg+xml" data={CloseIcon}></object></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
             <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
