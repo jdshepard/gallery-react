@@ -16,7 +16,7 @@ class ShadowBox extends Component {
   }
 
   render() {
-    const photoDatum = this.props.photoDatum
+    const photoDatum = this.props.photoData[this.props.shadowboxIndex]
     let media = null
     if (photoDatum) {
       const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
@@ -28,6 +28,15 @@ class ShadowBox extends Component {
     } else {
       media = <i>loading</i>
     }
+
+    let previousLink = null
+    let nextLink = null
+
+    if (this.props.shadowboxIndex > 0)
+      previousLink = <Link to={`/smilebooth-gallery-react/photos/${this.props.shadowboxIndex - 1}`}><div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div></Link>
+
+    if (this.props.shadowboxIndex < this.props.photoData.length - 1)
+      nextLink = <Link to={`/smilebooth-gallery-react/photos/${this.props.shadowboxIndex + 1}`}><div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div></Link>
 
     let shadowboxShare = null
     if (this.state.shareType === 'email')
@@ -58,8 +67,8 @@ class ShadowBox extends Component {
           </div>
           {shadowboxShare}
           <div className="gallery-shadowBox-navigation">
-            <div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div>
-            <div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div>
+            {previousLink}
+            {nextLink}
           </div>
         </div>
       </div>

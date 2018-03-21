@@ -27,7 +27,7 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery">
-        <Route path="/smilebooth-gallery-react/photos/:id" render={ ({ match }) => { return <ShadowBox photoDatum={this.state.photoData[match.params.id]} /> }} />
+        <Route path="/smilebooth-gallery-react/photos/:id" render={ ({ match }) => { return <ShadowBox shadowboxIndex={parseInt(match.params.id)} photoData={this.state.photoData} /> }} />
         <GalleryControls photoData={this.state.photoData} />
         <GalleryTiles photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
