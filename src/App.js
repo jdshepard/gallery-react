@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 import Gallery from './components/Gallery'
 
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Gallery />
+          <Route path="/smilebooth-gallery-react/gallery/:id" render={ ({ match }) => { return <Gallery galleryId={parseInt(match.params.id)} /> }} />
         </div>
       </BrowserRouter>
     )

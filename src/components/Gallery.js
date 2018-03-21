@@ -3,6 +3,7 @@ import GalleryControls from './GalleryControls'
 import GalleryTiles from './GalleryTiles'
 import ShadowBox from './ShadowBox'
 import { Route } from 'react-router-dom'
+import superagent from 'superagent'
 
 class Gallery extends Component {
   constructor(props) {
@@ -20,16 +21,24 @@ class Gallery extends Component {
   }
 
   getPhotos() {
-    const photoData = require('../data/smilebooth_mock_server.json').photos
-    this.setState({photoData})
+    // const photoData = require('../data/smilebooth_mock_server.json').photos
+    const galleryURL = 'https://test-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
+    superagent.post(galleryURL)
+      .send({galleryId: this.props.galleryId})
+      .end((err, res) => {
+        console.log(res.body)
+        this.setState((prevState, props) => {
+          return {photoData: res.body}
+        })
+      })
   }
 
   render() {
     return (
       <div className="gallery">
-        <Route path="/smilebooth-gallery-react/photos/:id" render={ ({ match }) => { return <ShadowBox shadowboxIndex={parseInt(match.params.id)} photoData={this.state.photoData} /> }} />
+        <Route path="/smilebooth-gallery-react/gallery/:galleryId/photos/:id" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} shadowboxIndex={parseInt(match.params.id)} photoData={this.state.photoData} /> }} />
         <GalleryControls photoData={this.state.photoData} />
-        <GalleryTiles photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
+        <GalleryTiles galleryId={this.props.galleryId} photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
     )
   }
