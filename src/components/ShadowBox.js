@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ShadowboxShare from './ShadowboxShare'
-import closeIcon from '../images/close-icon.svg'
+import SVGInline from "react-svg-inline"
+import CloseIcon from '../images/close-icon.svg'
 
 class ShadowBox extends Component {
 
@@ -46,7 +47,7 @@ class ShadowBox extends Component {
       shadowboxShare = <ShadowboxShare shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
-        <div className="shadowBox-close"><Link to="/smilebooth-gallery-react"><i className="fas fa-times"></i></Link></div>
+        <div className="shadowBox-close"><Link to="/smilebooth-gallery-react"><object type="image/svg+xml" data={CloseIcon}></object></Link></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
             <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
