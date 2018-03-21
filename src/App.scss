@@ -161,12 +161,21 @@ h2 {
   transform: translateX(-50%);
   z-index: 10;
 
+  h2 {
+    text-transform: uppercase;
+  }
+
   form {
     label {
       display: none;
     }
     input[type=tel], input[type=email] {
-      width: 100%;
+      width: 80%;
+      font-family: 'Courier';
+      text-align: center;
+    }
+    input[type=tel] {
+      width: 12rem;
     }
     fieldset {
       padding: 1rem;

@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
+import NumberFormat from 'react-number-format'
 import superagent from 'superagent'
 
 class MMSShare extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      shareToPhone: ''
+      shareToPhone: '',
+      shareToPhoneFormatted: ''
     }
   }
 
-  updateShareform(e) {
-    let phoneNumber = e.target.value
-    phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-    this.setState({shareToPhone: phoneNumber})
+  updateShareform(values) {
+    const {formattedValue, value} = values
+    this.setState({shareToPhoneFormatted: formattedValue, shareToPhone: value})
+    console.log(value)
   }
 
   submit(e) {
@@ -34,8 +36,8 @@ class MMSShare extends Component {
         <form onSubmit={this.submit.bind(this)}>
           <label>To Phone</label>
           <fieldset>
-            <input name="toPhone" type="tel" placeholder="recipient phone number" value={this.state.shareToPhone} onChange={this.updateShareform.bind(this)} />
-            </fieldset>
+            <NumberFormat name="toPhone" type="tel" placeholder="+1 (   )   -    " value={this.state.shareToPhoneFormatted} onValueChange={this.updateShareform.bind(this)} format="+1 (###)###-####" />
+          </fieldset>
           <input type="submit" value="SEND" />
         </form>
       </div>
