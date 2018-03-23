@@ -21,7 +21,6 @@ class Gallery extends Component {
   }
 
   getPhotos() {
-    // const photoData = require('../data/smilebooth_mock_server.json').photos
     const galleryURL = 'https://test-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
     superagent.post(galleryURL)
       .send({galleryId: this.props.galleryId})
@@ -36,7 +35,7 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery">
-        <Route path="/smilebooth-gallery-react/gallery/:galleryId/photos/:id" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} shadowboxIndex={parseInt(match.params.id)} photoData={this.state.photoData} /> }} />
+        <Route path="/smilebooth-gallery-react/gallery/:galleryId/photos/:id" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} shadowboxIndex={parseInt(match.params.id, 10)} photoData={this.state.photoData} /> }} />
         <GalleryControls photoData={this.state.photoData} />
         <GalleryTiles galleryId={this.props.galleryId} photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>

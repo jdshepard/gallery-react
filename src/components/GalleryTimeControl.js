@@ -27,6 +27,7 @@ class GalleryTimeControl extends Component {
   setFunction() {
     var grid = document.querySelector('.gallery')
     imagesLoaded(grid).on('always', () => {
+      console.log('loaded')
       this.setState((prevState, props) => {
         return {pixelVsTimeFunc: this.createPixelTimeFunction()}
       }, this.setTime)
@@ -37,11 +38,15 @@ class GalleryTimeControl extends Component {
     let pixelVsTime = {}
     $('.gallery-galleryTile').each((i, tile) => {
       const intFromTop = parseInt($(tile).position().top, 10)
-      pixelVsTime[intFromTop] = new Date(this.props.photoData[i].timestamp)
+      pixelVsTime[intFromTop] = new Date(this.props.photoData[i].created)
     })
     const domain = Object.keys(pixelVsTime)
     const range = Object.values(pixelVsTime)
     const pixelVsTimeFunc = d3.scaleTime().domain(domain).range(range)
+    console.log('domain')
+    console.log(domain)
+    console.log('range')
+    console.log(range)
     return pixelVsTimeFunc
   }
 
