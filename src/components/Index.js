@@ -51,7 +51,7 @@ class Index extends Component {
       return <li key={gallery.id}><Link to={`/smilebooth-gallery-react/gallery/${gallery.id}`}>{gallery.name}</Link></li>
     })
     return (
-      <div>
+      <div id="indexPage">
         <header>
           <h1>Galleries</h1>
           <input type="text" placeholder="search" value={this.state.searchInput} onChange={this.updateSearch.bind(this)} />

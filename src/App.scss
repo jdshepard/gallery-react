@@ -24,6 +24,15 @@ fieldset {
   border: 0;
 }
 
+#indexPage {
+  text-align: center;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}
+
 h2 {
   font-family: 'sofia-pro';
   font-style: normal;
@@ -33,7 +42,7 @@ h2 {
 
 .gallery-images {
   width: 100%;
-  padding: 7.5rem 1rem;
+  padding: 6.5rem 1rem;
   margin: 0 auto;
   box-sizing: border-box;
 }
