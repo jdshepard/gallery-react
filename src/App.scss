@@ -34,7 +34,6 @@ h2 {
 .gallery-images {
   width: 100%;
   padding: 7.5rem 1rem;
-  max-width: 1100px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -362,7 +361,6 @@ h2 {
 }
 
 .gallery-controls-content {
-  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -398,5 +396,11 @@ h2 {
 @media only screen and (min-width: 1100px) {
   .gallery-columnSizer, .gallery-galleryTile {
     width: 25%;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .gallery-columnSizer, .gallery-galleryTile {
+    width: 20%;
   }
 }
