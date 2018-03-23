@@ -3,6 +3,7 @@ import GalleryTile from './GalleryTile'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
 import LoadedPhotoShower from '../lib/LoadedPhotoShower'
+import Infinite from 'react-infinite'
 
 class GalleryTiles extends Component {
 
@@ -30,7 +31,9 @@ class GalleryTiles extends Component {
     return (
       <div className="gallery-images">
         <div className="gallery-columnSizer"></div>
-        {galleryTiles}
+        <Infinite containerHeight={800} elementHeight={50} useWindowAsScrollContainer>
+          {galleryTiles}
+        </Infinite>
       </div>
     )
   }
