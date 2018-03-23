@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GalleryInfo from './GalleryInfo'
 import GalleryTimeControl from './GalleryTimeControl'
 import smileboothLogo from '../images/smilebooth_logo_2014_white.png'
+import { Link } from 'react-router-dom'
 
 class GalleryControls extends Component {
   render() {
@@ -10,7 +11,9 @@ class GalleryControls extends Component {
         <div className="gallery-controls-content">
           <header>
             <div className="gallery-controls-logo">
-              <img src={smileboothLogo} alt="Smilebooth Logo" />
+              <Link to="/smilebooth-gallery-react">
+                <img src={smileboothLogo} alt="Smilebooth Logo" />
+              </Link>
             </div>
           </header>
           <nav>
