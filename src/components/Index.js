@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import superagent from 'superagent'
 import { Link } from 'react-router-dom'
+import Fuse from 'fuse.js'
 
 class Index extends Component {
 
@@ -39,7 +40,14 @@ class Index extends Component {
   }
 
   render() {
-    const galleriesDom = this.state.galleries.map((gallery) => {
+    let fuse = new Fuse(this.state.galleries, {keys: ['name']})
+    let results = []
+    if (this.state.searchInput)
+      results = fuse.search(this.state.searchInput)
+    else
+      results = this.state.galleries
+
+    const galleriesDom = results.map((gallery) => {
       return <li key={gallery.id}><Link to={`/smilebooth-gallery-react/gallery/${gallery.id}`}>{gallery.name}</Link></li>
     })
     return (
