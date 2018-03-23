@@ -14,7 +14,6 @@ class MMSShare extends Component {
   updateShareform(values) {
     const {formattedValue, value} = values
     this.setState({shareToPhoneFormatted: formattedValue, shareToPhone: value})
-    console.log(value)
   }
 
   submit(e) {

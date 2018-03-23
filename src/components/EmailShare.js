@@ -7,7 +7,6 @@ class EmailShare extends Component {
     this.state = {
       shareToEmail: ''
     }
-    console.log(this.props.photoDatum)
   }
 
   updateShareform(e) {
