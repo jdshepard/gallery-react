@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ShadowboxShare from './ShadowboxShare'
 import CloseIcon from '../images/close-icon.svg'
+import Mousetrap from 'mousetrap'
 
 class ShadowBox extends Component {
 
@@ -10,7 +11,18 @@ class ShadowBox extends Component {
     this.state = {
       shareType: null
     }
-    console.log(this.props.history)
+  }
+
+  componentDidMount() {
+    Mousetrap.bind(['right', 'k'], () => { this.props.history.push(this.nextLink()) })
+    Mousetrap.bind(['left', 'j'], () => { this.props.history.push(this.previousLink()) })
+    Mousetrap.bind('escape', () => { this.props.history.push(this.galleryLink()) })
+  }
+
+  componentWillUnmount() {
+    Mousetrap.unbind(['right', 'k'])
+    Mousetrap.unbind(['left', 'j'])
+    Mousetrap.unbind('escape')
   }
 
   share(shareType) {
