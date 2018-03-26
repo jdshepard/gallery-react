@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import ShadowboxShare from './ShadowboxShare'
 import CloseIcon from '../images/close-icon.svg'
 
@@ -10,10 +10,23 @@ class ShadowBox extends Component {
     this.state = {
       shareType: null
     }
+    console.log(this.props.history)
   }
 
   share(shareType) {
     this.setState({shareType})
+  }
+
+  nextLink() {
+    return `/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex + 1}`
+  }
+
+  previousLink() {
+    return `/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex - 1}`
+  }
+
+  galleryLink() {
+    return `/smilebooth-gallery-react/gallery/${this.props.galleryId}`
   }
 
   render() {
@@ -34,10 +47,10 @@ class ShadowBox extends Component {
     let nextLink = null
 
     if (this.props.shadowboxIndex > 0)
-      previousLink = <Link to={`/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex - 1}`}><div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div></Link>
+      previousLink = <Link to={this.nextLink()}><div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div></Link>
 
     if (this.props.shadowboxIndex < this.props.photoData.length - 1)
-      nextLink = <Link to={`/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex + 1}`}><div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div></Link>
+      nextLink = <Link to={this.nextLink()}><div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div></Link>
 
     let shadowboxShare = null
     if (this.state.shareType === 'email')
@@ -46,7 +59,7 @@ class ShadowBox extends Component {
       shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     return (
       <div className="gallery-shadowBox">
-        <div className="shadowBox-close"><Link to={`/smilebooth-gallery-react/gallery/${this.props.galleryId}`}></Link><object type="image/svg+xml" data={CloseIcon}>close shadowbox</object></div>
+        <div className="shadowBox-close"><Link to={this.galleryLink()}></Link><object type="image/svg+xml" data={CloseIcon}>close shadowbox</object></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
             <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
@@ -77,4 +90,4 @@ class ShadowBox extends Component {
   }
 }
 
-export default ShadowBox
+export default withRouter(ShadowBox)
