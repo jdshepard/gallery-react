@@ -21,7 +21,7 @@ class Gallery extends Component {
   }
 
   getPhotos() {
-    const galleryURL = 'https://test-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
+    const galleryURL = 'https://v4-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
     superagent.post(galleryURL)
       .send({galleryId: this.props.galleryId})
       .end((err, res) => {

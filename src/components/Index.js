@@ -14,7 +14,7 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const gallerListUrl = 'https://test-api.smilebooth.com/api/v4/folders/list-names-noauth'
+    const gallerListUrl = 'https://v4-api.smilebooth.com/api/v4/folders/list-names-noauth'
     superagent.post(gallerListUrl).end((err, res) => {
       this.setState((prevState, props) => {
         return {galleries: this.uniqueGalleries(res.body)}
