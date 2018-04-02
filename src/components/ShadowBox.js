@@ -69,21 +69,31 @@ class ShadowBox extends Component {
       shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
     else if (this.state.shareType === 'mms')
       shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
+
+    const mmsShareLink = (
+      <li className="gallery-toolbox-action" onClick={() => { this.share('mms') }}>
+        <div className="toolbox-action-iconHolder">
+          <i className="far fa-comment"></i>
+        </div>
+      </li>
+    )
+
+    const emailShareLink = (
+      <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
+        <div className="toolbox-action-iconHolder">
+          <i className="far fa-envelope"></i>
+        </div>
+      </li>
+    )
+
+    const shareList = [emailShareLink]
+
     return (
       <div className="gallery-shadowBox">
         <div className="shadowBox-close"><Link to={this.galleryLink()}></Link><object type="image/svg+xml" data={CloseIcon}>close shadowbox</object></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
-            <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
-              <div className="toolbox-action-iconHolder">
-                <i className="far fa-envelope"></i>
-              </div>
-            </li>
-            <li className="gallery-toolbox-action" onClick={() => { this.share('mms') }}>
-              <div className="toolbox-action-iconHolder">
-                <i className="far fa-comment"></i>
-              </div>
-            </li>
+            {shareList}
           </ul>
         </div>
         <div className="gallery-shadowBox-content">
