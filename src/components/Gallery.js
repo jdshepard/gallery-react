@@ -10,6 +10,7 @@ class Gallery extends Component {
     super(props)
     let photoData = []
     this.state = {photoData, shadowboxIndex: -1}
+    this.galleryURL = 'https://v4-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
   }
 
   setShadowboxIndex(shadowboxIndex) {
@@ -18,11 +19,23 @@ class Gallery extends Component {
 
   componentDidMount() {
     this.getPhotos()
+    setTimeout(this.addNewPhotos.bind(this), 1000)
+  }
+
+  addNewPhotos() {
+    // const since = this.state.photoData[0].sequenceId
+    superagent.post(this.galleryURL)
+      .send({galleryId: this.props.galleryId, since: 22446})
+      .end((err, res) => {
+        console.log(res.body)
+        // this.setState((prevState, props) => {
+        //   return {photoData: res.body}
+        // })
+      })
   }
 
   getPhotos() {
-    const galleryURL = 'https://v4-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
-    superagent.post(galleryURL)
+    superagent.post(this.galleryURL)
       .send({galleryId: this.props.galleryId})
       .end((err, res) => {
         console.log(res.body)
