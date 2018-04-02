@@ -70,18 +70,18 @@ class ShadowBox extends Component {
     else if (this.state.shareType === 'mms')
       shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
 
-    const mmsShareLink = (
-      <li className="gallery-toolbox-action" onClick={() => { this.share('mms') }}>
-        <div className="toolbox-action-iconHolder">
-          <i className="far fa-comment"></i>
-        </div>
-      </li>
-    )
-
     const emailShareLink = (
       <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
         <div className="toolbox-action-iconHolder">
           <i className="far fa-envelope"></i>
+        </div>
+      </li>
+    )
+
+    const mmsShareLink = (
+      <li className="gallery-toolbox-action" onClick={() => { this.share('mms') }}>
+        <div className="toolbox-action-iconHolder">
+          <i className="far fa-comment"></i>
         </div>
       </li>
     )

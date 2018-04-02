@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import superagent from 'superagent'
+import $ from 'jquery'
 
 class EmailShare extends Component {
   constructor(props) {
@@ -7,6 +8,10 @@ class EmailShare extends Component {
     this.state = {
       shareToEmail: ''
     }
+  }
+
+  componentDidMount() {
+    $('#shareEmail').focus()
   }
 
   updateShareform(e) {
@@ -32,7 +37,7 @@ class EmailShare extends Component {
         <form onSubmit={this.submit.bind(this)}>
           <label>To Email</label>
           <fieldset>
-            <input name="toEmail" type="email" placeholder="yeah@smilebooth.com" value={this.state.shareToEmail} onChange={this.updateShareform.bind(this)} />
+            <input id="shareEmail" name="toEmail" type="email" placeholder="yeah@smilebooth.com" value={this.state.shareToEmail} onChange={this.updateShareform.bind(this)} />
             </fieldset>
           <input type="submit" value="SEND" />
         </form>
