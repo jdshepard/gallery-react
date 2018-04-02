@@ -75,7 +75,7 @@ class ShadowBox extends Component {
     let nextLink = null
 
     if (this.props.shadowboxIndex > 0)
-      previousLink = <Link to={this.nextLink()}><div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div></Link>
+      previousLink = <Link to={this.previousLink()}><div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div></Link>
 
     if (this.props.shadowboxIndex < this.props.photoData.length - 1)
       nextLink = <Link to={this.nextLink()}><div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div></Link>
