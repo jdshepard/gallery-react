@@ -31,9 +31,7 @@ class GalleryTiles extends Component {
     return (
       <div className="gallery-images">
         <div className="gallery-columnSizer"></div>
-        <Infinite containerHeight={800} elementHeight={50} useWindowAsScrollContainer>
-          {galleryTiles}
-        </Infinite>
+        {galleryTiles}
       </div>
     )
   }
