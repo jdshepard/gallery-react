@@ -46,6 +46,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
+    "react-gestures": "^0.1.8",
     "react-images": "^0.5.17",
     "react-infinite": "^0.12.1",
     "react-keybindings": "^2.0.1",
