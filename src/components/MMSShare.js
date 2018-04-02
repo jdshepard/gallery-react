@@ -40,7 +40,7 @@ class MMSShare extends Component {
         <form onSubmit={this.submit.bind(this)}>
           <label>To Phone</label>
           <fieldset>
-            <NumberFormat id="shareMMS" name="toPhone" type="tel" placeholder="+1 (   )   -    " value={this.state.shareToPhoneFormatted} onValueChange={this.updateShareform.bind(this)} format="+1 (###)###-####" />
+            <NumberFormat id="shareMMS" name="toPhone" type="tel" placeholder="+1 (   )   -    " format="+1 (###)###-####" allowEmptyFormatting={true} value={this.state.shareToPhoneFormatted} onValueChange={this.updateShareform.bind(this)} />
           </fieldset>
           <input type="submit" value="SEND" />
         </form>
