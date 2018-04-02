@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom'
 import ShadowboxShare from './ShadowboxShare'
 import CloseIcon from '../images/close-icon.svg'
 import Mousetrap from 'mousetrap'
+import $ from 'jquery'
+import Swipeable from 'react-swipeable'
 
 class ShadowBox extends Component {
 
@@ -14,9 +16,9 @@ class ShadowBox extends Component {
   }
 
   componentDidMount() {
-    Mousetrap.bind(['right', 'k'], () => { this.props.history.push(this.nextLink()) })
-    Mousetrap.bind(['left', 'j'], () => { this.props.history.push(this.previousLink()) })
-    Mousetrap.bind('escape', () => { this.props.history.push(this.galleryLink()) })
+    Mousetrap.bind(['right', 'k'], this.goNext.bind(this))
+    Mousetrap.bind(['left', 'j'], this.goPrevious.bind(this))
+    Mousetrap.bind('escape', this.exit.bind(this))
   }
 
   componentWillUnmount() {
@@ -39,6 +41,20 @@ class ShadowBox extends Component {
 
   galleryLink() {
     return `/smilebooth-gallery-react/gallery/${this.props.galleryId}`
+  }
+
+  goNext() {
+    if (this.props.shadowboxIndex < this.props.photoData.length - 1)
+      this.props.history.push(this.nextLink())
+  }
+
+  goPrevious() {
+    if (this.props.shadowboxIndex > 0)
+      this.props.history.push(this.previousLink())
+  }
+
+  exit() {
+    this.props.history.push(this.galleryLink())
   }
 
   render() {
@@ -96,7 +112,7 @@ class ShadowBox extends Component {
             {shareList}
           </ul>
         </div>
-        <div className="gallery-shadowBox-content">
+        <Swipeable className="gallery-shadowBox-content" onSwipedLeft={this.goNext.bind(this)} onSwipedRight={this.goPrevious.bind(this)} onSwipedDown={this.exit.bind(this)}>
           <div className="gallery-shadowBox-loader loader"></div>
           <div className="gallery-shadowBox-media">
             {media}
@@ -106,7 +122,7 @@ class ShadowBox extends Component {
             {previousLink}
             {nextLink}
           </div>
-        </div>
+        </Swipeable>
       </div>
     )
   }
