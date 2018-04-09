@@ -25,9 +25,10 @@ class Gallery extends Component {
     superagent.post(this.galleryURL)
       .send({galleryId: this.props.galleryId})
       .end((err, res) => {
-        console.log(res.body)
         this.setState((prevState, props) => {
-          return {photoData: res.body}
+          const photos = res.body.sort((a, b) => { return b.sequenceId - a.sequenceId })
+          console.log(photos)
+          return {photoData: photos}
         })
       })
   }
