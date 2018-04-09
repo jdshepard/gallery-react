@@ -9,13 +9,6 @@ class GalleryControls extends Component {
     return (
       <div className="gallery-controls">
         <div className="gallery-controls-content">
-          <header>
-            <div className="gallery-controls-logo">
-              <Link to="/smilebooth-gallery-react">
-                <img src={smileboothLogo} alt="Smilebooth Logo" />
-              </Link>
-            </div>
-          </header>
           <nav>
             <GalleryInfo photoData={this.props.photoData} />
             <GalleryTimeControl photoData={this.props.photoData} />
