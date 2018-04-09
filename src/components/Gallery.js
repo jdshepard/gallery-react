@@ -19,19 +19,6 @@ class Gallery extends Component {
 
   componentDidMount() {
     this.getPhotos()
-    setTimeout(this.addNewPhotos.bind(this), 1000)
-  }
-
-  addNewPhotos() {
-    // const since = this.state.photoData[0].sequenceId
-    superagent.post(this.galleryURL)
-      .send({galleryId: this.props.galleryId, since: 22446})
-      .end((err, res) => {
-        console.log(res.body)
-        // this.setState((prevState, props) => {
-        //   return {photoData: res.body}
-        // })
-      })
   }
 
   getPhotos() {
