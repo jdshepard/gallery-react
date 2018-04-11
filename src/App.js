@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/smilebooth-gallery-react" component={Index} />
+          <Route exact path="/" component={Index} />
           <Route path="/gallery/:id" render={ ({ match }) => { return <Gallery galleryId={parseInt(match.params.id, 10)} /> }} />
         </div>
       </BrowserRouter>
