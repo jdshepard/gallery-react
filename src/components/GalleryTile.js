@@ -13,7 +13,7 @@ class GalleryTile extends Component {
     }
 
     return (
-      <Link to={`/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.tileIndex}`}>
+      <Link to={`/gallery/${this.props.galleryId}/photos/${this.props.tileIndex}`}>
         <div className="gallery-galleryTile">
           {tile}
         </div>

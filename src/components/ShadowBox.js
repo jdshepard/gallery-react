@@ -32,15 +32,15 @@ class ShadowBox extends Component {
   }
 
   nextLink() {
-    return `/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex + 1}`
+    return `/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex + 1}`
   }
 
   previousLink() {
-    return `/smilebooth-gallery-react/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex - 1}`
+    return `/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex - 1}`
   }
 
   galleryLink() {
-    return `/smilebooth-gallery-react/gallery/${this.props.galleryId}`
+    return `/gallery/${this.props.galleryId}`
   }
 
   goNext() {

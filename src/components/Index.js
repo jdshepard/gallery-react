@@ -48,7 +48,7 @@ class Index extends Component {
       results = this.state.galleries
 
     const galleriesDom = results.map((gallery) => {
-      return <li key={gallery.id}><Link to={`/smilebooth-gallery-react/gallery/${gallery.id}`}>{gallery.name}</Link></li>
+      return <li key={gallery.id}><Link to={`/gallery/${gallery.id}`}>{gallery.name}</Link></li>
     })
     return (
       <div id="indexPage">
