@@ -112,7 +112,7 @@ class ShadowBox extends Component {
 
     return (
       <div className="gallery-shadowBox">
-        <div className="shadowBox-close"><Link to={this.galleryLink()}>close</Link></div>
+        <div className="shadowBox-close"><Link to={this.galleryLink()}><div dangerouslySetInnerHTML={{__html: CloseIcon}} /></Link></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
             {shareList}
