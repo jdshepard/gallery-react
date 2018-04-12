@@ -19,7 +19,6 @@ class ShadowBox extends Component {
     Mousetrap.bind(['right', 'k'], this.goNext.bind(this))
     Mousetrap.bind(['left', 'j'], this.goPrevious.bind(this))
     Mousetrap.bind('escape', this.exit.bind(this))
-    this.galleryId = this.props.match.params.galleryId
   }
 
   componentWillUnmount() {
@@ -39,15 +38,15 @@ class ShadowBox extends Component {
   }
 
   nextLink() {
-    return `/gallery/${this.galleryId}/photos/${this.photoIndex() + 1}`
+    return `${this.galleryLink()}/photos/${this.props.photoData[this.photoIndex() + 1].id}`
   }
 
   previousLink() {
-    return `/gallery/${this.galleryId}/photos/${this.photoIndex() - 1}`
+    return `${this.galleryLink()}/photos/${this.props.photoData[this.photoIndex() - 1].id}`
   }
 
   galleryLink() {
-    return `/gallery/${this.galleryId}`
+    return `/gallery/${this.props.match.params.galleryId}`
   }
 
   goNext() {
