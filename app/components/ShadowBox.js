@@ -65,8 +65,6 @@ class ShadowBox extends Component {
 
   render() {
     const photoDatum = this.props.photoData[this.photoIndex()]
-    console.log('photoDatum')
-    console.log(photoDatum)
     let media = null
     if (photoDatum) {
       const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
@@ -95,7 +93,7 @@ class ShadowBox extends Component {
       shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
 
     const emailShareLink = (
-      <li className="gallery-toolbox-action" onClick={() => { this.share('email') }}>
+      <li className="gallery-toolbox-action" key="email-share" onClick={() => { this.share('email') }}>
         <div className="toolbox-action-iconHolder">
           <i className="far fa-envelope"></i>
         </div>
@@ -103,7 +101,7 @@ class ShadowBox extends Component {
     )
 
     const mmsShareLink = (
-      <li className="gallery-toolbox-action" onClick={() => { this.share('mms') }}>
+      <li className="gallery-toolbox-action" key="mms-share" onClick={() => { this.share('mms') }}>
         <div className="toolbox-action-iconHolder">
           <i className="far fa-comment"></i>
         </div>

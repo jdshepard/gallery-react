@@ -27,7 +27,6 @@ class Gallery extends Component {
       .end((err, res) => {
         this.setState((prevState, props) => {
           const photos = res.body.sort((a, b) => { return b.sequenceId - a.sequenceId })
-          console.log(photos)
           return {photoData: photos}
         })
       })
