@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "babel ./app -d ./build",
-    "heroku-postbuild": "babel ./app -d ./build",
+    "heroku-postbuild": "babel ./app -d ./build && webpack --config ./webpack.config.js/",
     "build:watch": "babel ./app -d ./build --watch",
     "build:client": "webpack --config ./webpack.config.js/",
     "build:watch:client": "webpack --config ./webpack.config.js/ --watch",
