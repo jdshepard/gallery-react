@@ -2,6 +2,9 @@
   "name": "smilebooth-gallery",
   "version": "0.1.0",
   "homepage": "http://sfidas.github.io/smilebooth-gallery-react",
+  "engines": {
+    "node": "9.7.1"
+  },
   "scripts": {
     "build": "babel ./app -d build",
     "build:watch": "babel ./app -d build --watch",
