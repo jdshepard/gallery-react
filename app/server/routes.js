@@ -1,7 +1,7 @@
 const routes = [
   '/',
-  '/pokemon',
-  '/pokemon/ability/:ability'
+  '/gallery/:galleryId',
+  '/gallery/:galleryId/photos/:photoId'
 ]
 
 export default routes
