@@ -35,7 +35,7 @@ export default function router(req, res) {
             <meta property="og:type"   content="article" />
             <meta property="og:url"    content="${fullRequestUrl}" />
             <meta property="og:title"  content="Smilebooth" />
-            <meta name="og:description" content="Smilebooth">
+            <meta property="og:description" content="Smilebooth">
             <meta property="og:image"  content="${image.cardUrl}" />
             <meta property="og:image:width"  content="${image.width}" />
             <meta property="og:image:height"  content="${image.height}" />
