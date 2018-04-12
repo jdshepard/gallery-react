@@ -1,23 +1,6 @@
-import express from 'express'
-import serverRenderer from './middleware/renderer'
+import app from './app'
 
-const PORT = 3000
-const path = require('path')
+const port = process.env.PORT || 3000
 
-const app = express()
-const router = express.Router()
-
-router.use('^/$', serverRenderer)
-
-router.use(express.static(
-  path.resolve(__dirname, '..', 'build'),
-  { maxAge: '30d' }
-))
-
-app.use(router)
-
-app.listen(PORT, (error) => {
-  if (error)
-    return console.log('something bad happened', error)
-  console.log("listening on " + PORT + "...")
-})
+app.listen(port)
+console.log(`listening on port ${port}`)
