@@ -6,14 +6,13 @@
     "node": "9.7.1"
   },
   "scripts": {
-    "build": "babel ./app -d ./build",
-    "heroku-postbuild": "babel ./app -d ./build && webpack --config ./webpack.config.js/",
-    "build:watch": "babel ./app -d ./build --watch",
-    "build:client": "webpack --config ./webpack.config.js/",
-    "build:watch:client": "webpack --config ./webpack.config.js/ --watch",
-    "build:prod": "npm run build && npm run build:client",
-    "start:dev": "parallelshell 'npm run build:watch' 'npm run build:watch:client' 'nodemon ./build/server/index.js'",
-    "start": "node ./build/server/index.js"
+    "build": "webpack --config ./webpack.config.js/",
+    "heroku-postbuild": "npm run build",
+    "build:watch": "webpack --config ./webpack.config.js/ --watch",
+    "build:prod": "npm run build",
+    "start:watch": "NODE_ENV=development nodemon ./build/server.bundle.js",
+    "start:dev": "npm-run-all --parallel build:watch start:watch",
+    "start": "node ./build/server.bundle.js"
   },
   "dependencies": {
     "ajv": "^6.3.0",
@@ -75,6 +74,7 @@
     "react-swipeable": "^4.2.1",
     "style-loader": "0.19.0",
     "superagent": "^3.8.2",
+    "svg-inline-loader": "^0.8.0",
     "svg-loader": "0.0.2",
     "svg-react-loader": "^0.4.5",
     "sw-precache-webpack-plugin": "0.11.4",
