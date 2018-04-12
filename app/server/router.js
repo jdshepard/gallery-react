@@ -12,6 +12,7 @@ export default function router(req, res) {
   console.log(match)
   if (!match) {
     res.status(404).send('page not found')
+    console.log('no matchy')
     return
   }
 

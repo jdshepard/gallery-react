@@ -12,7 +12,7 @@ export default function renderFullPage(html, preloadedState) {
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
         </script>
-        <script src="/bundle.js"></script>
+        <script src="/public/client.js"></script>
       </body>
     </html>
   `

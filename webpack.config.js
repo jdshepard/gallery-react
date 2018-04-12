@@ -7,8 +7,8 @@ module.exports = [
     devtool: 'inline-source-map',
     entry: './app/index.js',
     output: {
-      path: path.join(__dirname, 'build'),
-      filename: 'client.bundle.js'
+      path: path.join(__dirname, 'build', 'public'),
+      filename: 'client.js'
     },
     module: {
       rules: [

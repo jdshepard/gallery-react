@@ -6,7 +6,7 @@ import router from './router'
 
 const app = express()
 
-const assets = express.static(path.join(__dirname, '../'))
+const assets = express.static(path.resolve('build'))
 
 app.use(cors())
 app.use(assets)
