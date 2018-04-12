@@ -32,13 +32,13 @@ export default function router(req, res) {
         if (image) {
           const header = `
             <meta property="fb:app_id" content="1401488693436528" />
-            <meta property="og:type"   content="article" />
-            <meta property="og:url"    content="${fullRequestUrl}" />
-            <meta property="og:title"  content="Smilebooth" />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content="${fullRequestUrl}" />
+            <meta property="og:title" content="Smilebooth" />
             <meta property="og:description" content="Smilebooth">
-            <meta property="og:image"  content="${image.cardUrl}" />
-            <meta property="og:image:width"  content="${image.width}" />
-            <meta property="og:image:height"  content="${image.height}" />
+            <meta property="og:image" content="${image.cardUrl}" />
+            <meta property="og:image:width" content="${image.width}" />
+            <meta property="og:image:height" content="${image.height}" />
 
             <meta name="twitter:card" content="summary">
             <meta name="twitter:title" content="Smilebooth">
