@@ -24,8 +24,9 @@ export default function router(req, res) {
         const image = response.body.find((res_image) => { return parseInt(res_image.id, 10) === parseInt(match.params.photoId, 10) })
         if (image) {
           const header = `
-            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:card" content="summary">
             <meta name="twitter:title" content="Smilebooth">
+            <meta name="twitter:description" content="Smilebooth">
             <meta name="twitter:image" content="${image.url}">
           `
           res.status(200).send(renderFullPage(html, header))
