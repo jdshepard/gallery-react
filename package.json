@@ -8,7 +8,7 @@
     "build:client": "webpack --config ./webpack.config.js/",
     "build:watch:client": "webpack --config ./webpack.config.js/ --watch",
     "build:prod": "npm run build && npm run build:client",
-    "start:dev": "parallelshell 'npm run build:watch' 'npm run build:watch:client' 'DEBUG=express:* nodemon ./build/server/index.js'"
+    "start:dev": "parallelshell 'npm run build:watch' 'npm run build:watch:client' 'nodemon ./build/server/index.js'"
   },
   "dependencies": {
     "ajv": "^6.3.0",
