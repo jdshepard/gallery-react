@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ShadowboxShare from './ShadowboxShare'
-import CloseIcon from '../images/close-icon.svg'
+// import CloseIcon from '../images/close-icon.svg'
 import Mousetrap from 'mousetrap'
 import $ from 'jquery'
 import Swipeable from 'react-swipeable'
@@ -106,7 +106,7 @@ class ShadowBox extends Component {
 
     return (
       <div className="gallery-shadowBox">
-        <div className="shadowBox-close"><Link to={this.galleryLink()}></Link><object type="image/svg+xml" data={CloseIcon}>close shadowbox</object></div>
+        <div className="shadowBox-close"><Link to={this.galleryLink()}></Link><object type="image/svg+xml" data={'dave'}>close shadowbox</object></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
             {shareList}

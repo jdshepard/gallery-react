@@ -19,6 +19,5 @@ app.use(router)
 app.listen(PORT, (error) => {
   if (error)
     return console.log('something bad happened', error)
-
   console.log("listening on " + PORT + "...")
 })
