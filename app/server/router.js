@@ -24,6 +24,12 @@ export default function router(req, res) {
         const image = response.body.find((res_image) => { return parseInt(res_image.id, 10) === parseInt(match.params.photoId, 10) })
         if (image) {
           const header = `
+            <meta property="fb:app_id" content="1401488693436528" />
+            <meta property="og:type"   content="article" />
+            <meta property="og:url"    content="${req.url}" />
+            <meta property="og:title"  content="Smilebooth" />
+            <meta property="og:image"  content="${image.cardUrl}" />
+
             <meta name="twitter:card" content="summary">
             <meta name="twitter:title" content="Smilebooth">
             <meta name="twitter:description" content="Smilebooth">
