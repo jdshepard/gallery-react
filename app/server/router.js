@@ -27,7 +27,7 @@ export default function router(req, res) {
             <meta name="twitter:card" content="summary">
             <meta name="twitter:title" content="Smilebooth">
             <meta name="twitter:description" content="Smilebooth">
-            <meta name="twitter:image" content="${image.url}">
+            <meta name="twitter:image" content="${image.cardUrl}">
           `
           res.status(200).send(renderFullPage(html, header))
           return
