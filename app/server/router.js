@@ -4,7 +4,7 @@ import { matchPath, StaticRouter } from 'react-router-dom'
 
 import routes from './routes'
 import renderFullPage from './renderFullPage'
-import getPokemon from '../services/getPokemon'
+// import getPokemon from '../services/getPokemon'
 import App from '../components/App'
 
 export default function router(req, res) {
@@ -15,16 +15,19 @@ export default function router(req, res) {
     return
   }
 
-  return getPokemon.withAbility('telepathy')
-    .then(resp => {
-      const pokemon = { list: resp.data.pokemon }
-      const context = {}
-      const html = renderToString(
-        <StaticRouter context={context} location={req.url}>
-          <App pokemon={pokemon} />
-        </StaticRouter>
-      )
-      res.status(200).send(renderFullPage(html, pokemon))
-    })
-    .catch( err => res.status(404).send(`${err}: oh no error!`))
+  const html = <App />
+  res.status(200).send(renderFullPage(html, {}))
+
+  // return getPokemon.withAbility('telepathy')
+  //   .then(resp => {
+  //     const pokemon = { list: resp.data.pokemon }
+  //     const context = {}
+  //     const html = renderToString(
+  //       <StaticRouter context={context} location={req.url}>
+  //         <App pokemon={pokemon} />
+  //       </StaticRouter>
+  //     )
+  //     res.status(200).send(renderFullPage(html, pokemon))
+  //   })
+  //   .catch( err => res.status(404).send(`${err}: oh no error!`))
 }

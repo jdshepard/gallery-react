@@ -2,7 +2,7 @@ export default function renderFullPage(html, preloadedState) {
   return `
     <!doctype html>
     <html>
-      <head><title>SSR</title></head>
+      <head><title>Smilebooth</title></head>
       <body>
         <div id="root">${html}</div>
         <script>
