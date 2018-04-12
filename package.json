@@ -6,7 +6,7 @@
     "node": "9.7.1"
   },
   "scripts": {
-    "build": "babel ./app -d build",
+    "build": "babel ./app -d ./build",
     "build:watch": "babel ./app -d ./build --watch",
     "build:client": "webpack --config ./webpack.config.js/",
     "build:watch:client": "webpack --config ./webpack.config.js/ --watch",
