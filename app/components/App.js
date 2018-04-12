@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import './App.css'
-import Gallery from './components/Gallery'
-import Index from './components/Index'
+import '../styles/App.css'
+import Gallery from './Gallery'
+import Index from './Index'
 
 class App extends Component {
   render() {
