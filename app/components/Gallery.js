@@ -36,7 +36,7 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery">
-        <Route path="/gallery/:galleryId/photos/:id" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} shadowboxIndex={parseInt(match.params.id, 10)} photoData={this.state.photoData} /> }} />
+        <Route path="/gallery/:galleryId/photos/:photoId" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} photoData={this.state.photoData} /> }} />
         <GalleryControls photoData={this.state.photoData} />
         <GalleryTiles galleryId={this.props.galleryId} photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>

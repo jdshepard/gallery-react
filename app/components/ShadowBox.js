@@ -19,6 +19,7 @@ class ShadowBox extends Component {
     Mousetrap.bind(['right', 'k'], this.goNext.bind(this))
     Mousetrap.bind(['left', 'j'], this.goPrevious.bind(this))
     Mousetrap.bind('escape', this.exit.bind(this))
+    this.galleryId = this.props.match.params.galleryId
   }
 
   componentWillUnmount() {
@@ -27,29 +28,35 @@ class ShadowBox extends Component {
     Mousetrap.unbind('escape')
   }
 
+  photoIndex() {
+    const photoId = parseInt(this.props.match.params.photoId, 10)
+    const shadowboxIndex = this.props.photoData.findIndex((photo) => { return photoId === parseInt(photo.id, 10) })
+    return shadowboxIndex
+  }
+
   share(shareType) {
     this.setState({shareType})
   }
 
   nextLink() {
-    return `/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex + 1}`
+    return `/gallery/${this.galleryId}/photos/${this.photoIndex() + 1}`
   }
 
   previousLink() {
-    return `/gallery/${this.props.galleryId}/photos/${this.props.shadowboxIndex - 1}`
+    return `/gallery/${this.galleryId}/photos/${this.photoIndex() - 1}`
   }
 
   galleryLink() {
-    return `/gallery/${this.props.galleryId}`
+    return `/gallery/${this.galleryId}`
   }
 
   goNext() {
-    if (this.props.shadowboxIndex < this.props.photoData.length - 1)
+    if (this.photoIndex() < this.props.photoData.length - 1)
       this.props.history.push(this.nextLink())
   }
 
   goPrevious() {
-    if (this.props.shadowboxIndex > 0)
+    if (this.photoIndex() > 0)
       this.props.history.push(this.previousLink())
   }
 
@@ -58,7 +65,9 @@ class ShadowBox extends Component {
   }
 
   render() {
-    const photoDatum = this.props.photoData[this.props.shadowboxIndex]
+    const photoDatum = this.props.photoData[this.photoIndex()]
+    console.log('photoDatum')
+    console.log(photoDatum)
     let media = null
     if (photoDatum) {
       const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
@@ -74,10 +83,10 @@ class ShadowBox extends Component {
     let previousLink = null
     let nextLink = null
 
-    if (this.props.shadowboxIndex > 0)
+    if (this.photoIndex() > 0)
       previousLink = <Link to={this.previousLink()}><div className="shadowBox-navigation shadowBox-navigationPrevious"><i className="angle-left"></i></div></Link>
 
-    if (this.props.shadowboxIndex < this.props.photoData.length - 1)
+    if (this.photoIndex() < this.props.photoData.length - 1)
       nextLink = <Link to={this.nextLink()}><div className="shadowBox-navigation shadowBox-navigationNext"><i className="angle-right"></i></div></Link>
 
     let shadowboxShare = null
@@ -106,7 +115,7 @@ class ShadowBox extends Component {
 
     return (
       <div className="gallery-shadowBox">
-        <div className="shadowBox-close"><Link to={this.galleryLink()}></Link><object type="image/svg+xml" data={'dave'}>close shadowbox</object></div>
+        <div className="shadowBox-close"><Link to={this.galleryLink()}>close</Link></div>
         <div className="gallery-toolbox">
           <ul className="gallery-toolbox-actions">
             {shareList}
