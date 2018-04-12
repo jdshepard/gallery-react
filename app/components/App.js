@@ -6,12 +6,10 @@ import Index from './Index'
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Route exact path="/" component={Index} />
-          <Route path="/gallery/:id" render={ ({ match }) => { return <Gallery galleryId={parseInt(match.params.id, 10)} /> }} />
-        </div>
-      </BrowserRouter>
+      <div>
+        <Route exact path="/" component={Index} />
+        <Route path="/gallery/:id" render={ ({ match }) => { return <Gallery galleryId={parseInt(match.params.id, 10)} /> }} />
+      </div>
     )
   }
 }

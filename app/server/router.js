@@ -15,7 +15,11 @@ export default function router(req, res) {
     return
   }
 
-  const html = <App />
+  const html = renderToString(
+    <StaticRouter context={{}} location={req.url}>
+      <App />
+    </StaticRouter>
+  )
   res.status(200).send(renderFullPage(html, {}))
 
   // return getPokemon.withAbility('telepathy')
