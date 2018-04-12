@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "babel ./app -d build",
-    "build:watch": "babel ./app -d build --watch",
+    "build:watch": "babel ./app -d ./build --watch",
     "build:client": "webpack --config ./webpack.config.js/",
     "build:watch:client": "webpack --config ./webpack.config.js/ --watch",
     "build:prod": "npm run build && npm run build:client",
