@@ -2,6 +2,7 @@ import { renderToString } from 'react-dom/server'
 import React from 'react'
 import { matchPath, StaticRouter } from 'react-router-dom'
 import superagent from 'superagent'
+import url from 'url'
 
 import routes from './routes'
 import renderFullPage from './renderFullPage'
@@ -17,6 +18,12 @@ export default function router(req, res) {
     return
   }
 
+  const fullRequestUrl = url.format({
+    protocol: req.protocol,
+    host: req.get('host'),
+    pathname: req.originalUrl
+  })
+
   if (match.params.galleryId && match.params.photoId) {
     superagent.post('https://v4-api.smilebooth.com/api/v4/images/list-by-gallery-noauth')
       .send({galleryId: match.params.galleryId})
@@ -26,9 +33,12 @@ export default function router(req, res) {
           const header = `
             <meta property="fb:app_id" content="1401488693436528" />
             <meta property="og:type"   content="article" />
-            <meta property="og:url"    content="${req.url}" />
+            <meta property="og:url"    content="${fullRequestUrl}" />
             <meta property="og:title"  content="Smilebooth" />
+            <meta name="og:description" content="Smilebooth">
             <meta property="og:image"  content="${image.cardUrl}" />
+            <meta property="og:image:width"  content="${image.width}" />
+            <meta property="og:image:height"  content="${image.height}" />
 
             <meta name="twitter:card" content="summary">
             <meta name="twitter:title" content="Smilebooth">
