@@ -24,6 +24,10 @@ module.exports = {
         test: /.css$/,
         loader: ['style-loader', 'css-loader'],
         include: path.join(__dirname, 'app', 'styles')
+      },
+      {
+        test: /.svg$/,
+        loader: 'svg-loader'
       }
     ]
   }
