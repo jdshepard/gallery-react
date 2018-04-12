@@ -87,5 +87,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "parallelshell": "^3.0.2"
   }
 }
