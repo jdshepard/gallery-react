@@ -6,6 +6,9 @@ export default function renderFullPage(html, header) {
         <title>Smilebooth</title>
         <link rel="stylesheet" href="https://use.typekit.net/wpc4ivb.css">
         <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="http://www.smilebooth.com/favicon.ico">
         ${header}
       </head>
       <body>
