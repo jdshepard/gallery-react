@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 
+
 const devSettings = {
   devtool: 'inline-source-map'
 }
@@ -64,10 +65,23 @@ const serverConfig = {
   }
 }
 
+const productionSettings = {
+  plugins: [
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin()
+  ]
+}
+
 module.exports = mode => {
   if (mode === "production") {
     console.log('production settings')
-    return [merge(clientConfig, commonModuleSettings), merge(serverConfig, commonModuleSettings)]
+    return [merge(clientConfig, commonModuleSettings, productionSettings), merge(serverConfig, commonModuleSettings, productionSettings)]
   }
   console.log('dev settings')
   return [merge(clientConfig, devSettings, commonModuleSettings), merge(serverConfig, devSettings, commonModuleSettings)]
