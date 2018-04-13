@@ -5,6 +5,7 @@ import CloseIcon from '../images/close-icon.svg'
 import Mousetrap from 'mousetrap'
 import $ from 'jquery'
 import Swipeable from 'react-swipeable'
+import { FacebookButton, TwitterButton } from 'react-social'
 
 class ShadowBox extends Component {
 
@@ -95,7 +96,9 @@ class ShadowBox extends Component {
     const emailShareLink = (
       <li className="gallery-toolbox-action" key="email-share" onClick={() => { this.share('email') }}>
         <div className="toolbox-action-iconHolder">
-          <i className="far fa-envelope"></i>
+          <button>
+            <i className="far fa-envelope"></i>
+          </button>
         </div>
       </li>
     )
@@ -108,7 +111,27 @@ class ShadowBox extends Component {
       </li>
     )
 
-    const shareList = [emailShareLink]
+    const facebookShareLink = (
+      <li className="gallery-toolbox-action" key="fb-share" onClick={() => { this.share('fb') }}>
+        <div className="toolbox-action-iconHolder">
+          <FacebookButton appId="1401488693436528">
+            <i className="fab fa-facebook-f"></i>
+          </FacebookButton>
+        </div>
+      </li>
+    )
+
+    const twitterShareLink = (
+      <li className="gallery-toolbox-action" key="twitter-share" onClick={() => { this.share('fb') }}>
+        <div className="toolbox-action-iconHolder">
+          <TwitterButton>
+            <i className="fab fa-twitter"></i>
+          </TwitterButton>
+        </div>
+      </li>
+    )
+
+    const shareList = [emailShareLink, facebookShareLink, twitterShareLink]
 
     return (
       <div className="gallery-shadowBox">

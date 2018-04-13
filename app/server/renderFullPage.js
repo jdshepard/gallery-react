@@ -9,6 +9,7 @@ export default function renderFullPage(html, header) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" href="http://www.smilebooth.com/favicon.ico">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         ${header}
       </head>
       <body>

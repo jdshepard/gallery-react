@@ -197,6 +197,10 @@ h2 {
       cursor: pointer; }
       .gallery-toolbox .gallery-toolbox-actions .gallery-toolbox-action .toolbox-action-iconHolder {
         padding: 35%; }
+        .gallery-toolbox .gallery-toolbox-actions .gallery-toolbox-action .toolbox-action-iconHolder button {
+          padding: 0;
+          border: none;
+          background: none; }
         .gallery-toolbox .gallery-toolbox-actions .gallery-toolbox-action .toolbox-action-iconHolder .svg-inline--fa {
           transition: all 150ms linear;
           -webkit-transition: all 150ms linear;
