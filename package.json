@@ -6,9 +6,9 @@
     "node": "9.7.1"
   },
   "scripts": {
-    "build": "webpack --config ./webpack.config.js/",
+    "build": "webpack --config ./webpack.config.js/ --env=production",
     "heroku-postbuild": "npm run build",
-    "build:watch": "webpack --config ./webpack.config.js/ --watch",
+    "build:watch": "webpack --config ./webpack.config.js/ --watch --env=development",
     "build:prod": "npm run build",
     "start:watch": "NODE_ENV=development nodemon ./build/server.bundle.js",
     "start:dev": "npm-run-all --parallel build:watch start:watch",
@@ -88,7 +88,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "nodemon": "^1.17.3",
-    "parallelshell": "^3.0.2"
+    "parallelshell": "^3.0.2",
+    "webpack-merge": "^4.1.2"
   },
   "babel": {
     "presets": [
