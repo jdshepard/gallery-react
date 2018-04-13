@@ -89,7 +89,7 @@ const productionSettings = {
 module.exports = mode => {
   if (mode === "production") {
     console.log('production settings')
-    return [merge(clientConfig, commonModuleSettings, productionSettings), merge(serverConfig, commonModuleSettings, productionSettings)]
+    return [merge(clientConfig, commonModuleSettings, productionSettings), merge(serverConfig, commonModuleSettings)]
   }
   console.log('dev settings')
   return [merge(clientConfig, devSettings, commonModuleSettings), merge(serverConfig, devSettings, commonModuleSettings)]
