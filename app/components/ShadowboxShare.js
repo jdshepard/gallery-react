@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EmailShare from './EmailShare'
 import MMSShare from './MMSShare'
 import ShareLoading from './ShareLoading'
+import CloseIcon from '../images/close-icon.svg'
 
 class ShadowboxShare extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class ShadowboxShare extends Component {
       <div>
         <div className="gallery-shadowBox-shareClose" onClick={() => { this.props.closeShare() }}></div>
         <div className="shadowBox-share">
-          <div className="shadowBox-share-close" onClick={() => { this.props.closeShare() }}><i className="fas fa-times"></i></div>
+          <div className="shadowBox-share-close" onClick={() => { this.props.closeShare() }} dangerouslySetInnerHTML={{__html: CloseIcon}}></div>
           {shareContent}
         </div>
       </div>
