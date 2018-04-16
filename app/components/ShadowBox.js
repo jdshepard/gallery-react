@@ -70,7 +70,7 @@ class ShadowBox extends Component {
     if (photoDatum) {
       const extension = photoDatum.url.split('.')[photoDatum.url.split('.').length - 1]
       if (extension === 'mp4') {
-        media = <video src={photoDatum.url} autoPlay loop alt="" />
+        media = <video src={photoDatum.url} autoPlay playsInline loop alt="" />
       } else {
         media = <div className="img" style={{backgroundImage: `url('${photoDatum.url}')`}}></div>
       }
