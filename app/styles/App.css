@@ -150,6 +150,14 @@ h2 {
   .shadowBox-share form fieldset {
     padding: 1rem; }
 
+
+@media only screen and (max-width: 590px) {
+  .shadowBox-share {
+    width: 90%;
+    top: 35%;
+  }
+}
+
 .shadowBox-close, .shadowBox-share-close {
   position: absolute;
   top: 0;
