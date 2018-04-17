@@ -114,7 +114,7 @@ class ShadowBox extends Component {
     const facebookShareLink = (
       <li className="gallery-toolbox-action" key="fb-share" onClick={() => { this.share('fb') }}>
         <div className="toolbox-action-iconHolder">
-          <FacebookButton appId="1401488693436528">
+          <FacebookButton url={window.location} appId="1401488693436528">
             <i className="fab fa-facebook-f"></i>
           </FacebookButton>
         </div>
@@ -124,7 +124,7 @@ class ShadowBox extends Component {
     const twitterShareLink = (
       <li className="gallery-toolbox-action" key="twitter-share" onClick={() => { this.share('fb') }}>
         <div className="toolbox-action-iconHolder">
-          <TwitterButton>
+          <TwitterButton url={window.location}>
             <i className="fab fa-twitter"></i>
           </TwitterButton>
         </div>
