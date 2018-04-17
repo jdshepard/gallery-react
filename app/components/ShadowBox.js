@@ -93,6 +93,10 @@ class ShadowBox extends Component {
     else if (this.state.shareType === 'mms')
       shadowboxShare = <ShadowboxShare photoDatum={photoDatum} shareType={this.state.shareType} closeShare={() => { this.share(null) }} />
 
+    let url = ''
+    if (global.window)
+      url = global.window.location
+
     const emailShareLink = (
       <li className="gallery-toolbox-action" key="email-share" onClick={() => { this.share('email') }}>
         <div className="toolbox-action-iconHolder">
@@ -114,7 +118,7 @@ class ShadowBox extends Component {
     const facebookShareLink = (
       <li className="gallery-toolbox-action" key="fb-share" onClick={() => { this.share('fb') }}>
         <div className="toolbox-action-iconHolder">
-          <FacebookButton url={window.location} appId="1401488693436528">
+          <FacebookButton url={url} appId="1401488693436528">
             <i className="fab fa-facebook-f"></i>
           </FacebookButton>
         </div>
@@ -124,7 +128,7 @@ class ShadowBox extends Component {
     const twitterShareLink = (
       <li className="gallery-toolbox-action" key="twitter-share" onClick={() => { this.share('fb') }}>
         <div className="toolbox-action-iconHolder">
-          <TwitterButton url={window.location}>
+          <TwitterButton url={url}>
             <i className="fab fa-twitter"></i>
           </TwitterButton>
         </div>
