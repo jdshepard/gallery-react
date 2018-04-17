@@ -42,7 +42,8 @@ class GalleryTimeControl extends Component {
     let pixelVsTime = {}
     $('.gallery-galleryTile').each((i, tile) => {
       const intFromTop = parseInt($(tile).position().top, 10)
-      pixelVsTime[intFromTop] = new Date(this.props.photoData[i].created)
+      if (!pixelVsTime[intFromTop])
+        pixelVsTime[intFromTop] = new Date(this.props.photoData[i].created)
     })
     const domain = Object.keys(pixelVsTime)
     const range = Object.values(pixelVsTime)
