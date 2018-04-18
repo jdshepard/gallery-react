@@ -4,7 +4,7 @@ class GalleryInfo extends Component {
   render() {
     return (
       <div className="gallery-info gallery-info-title">
-        <h2>Marfa Office</h2>
+        <h2>{this.props.galleryName}</h2>
       </div>
     )
   }

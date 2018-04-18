@@ -9,7 +9,7 @@ class Gallery extends Component {
   constructor(props) {
     super(props)
     let photoData = []
-    this.state = {photoData, shadowboxIndex: -1}
+    this.state = {photoData, shadowboxIndex: -1, galleryName: ''}
     this.galleryURL = 'https://v4-api.smilebooth.com/api/v4/images/list-by-gallery-noauth'
   }
 
@@ -19,6 +19,7 @@ class Gallery extends Component {
 
   componentDidMount() {
     this.getPhotos()
+    this.getGallery()
   }
 
   getPhotos() {
@@ -32,11 +33,21 @@ class Gallery extends Component {
       })
   }
 
+  getGallery() {
+    const gallerListUrl = 'https://v4-api.smilebooth.com/api/v4/folders/list-names-noauth'
+    superagent.post(gallerListUrl).end((err, res) => {
+      this.setState((prevState, props) => {
+        const galleryEntry = res.body.find((gallery) => { return gallery.id == this.props.galleryId })
+        return {galleryName: galleryEntry.name}
+      })
+    })
+  }
+
   render() {
     return (
       <div className="gallery">
         <Route path="/gallery/:galleryId/photos/:photoId" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} photoData={this.state.photoData} /> }} />
-        <GalleryControls photoData={this.state.photoData} />
+        <GalleryControls galleryName={this.state.galleryName} photoData={this.state.photoData} />
         <GalleryTiles galleryId={this.props.galleryId} photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
     )
