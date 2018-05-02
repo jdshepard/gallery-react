@@ -24,7 +24,7 @@ class Gallery extends Component {
 
   getPhotos() {
     superagent.post(this.galleryURL)
-      .send({galleryId: this.props.galleryId})
+      .send({galleryId: this.props.match.params.galleryId})
       .end((err, res) => {
         this.setState((prevState, props) => {
           const photos = res.body.sort((a, b) => { return b.sequenceId - a.sequenceId })
@@ -37,7 +37,8 @@ class Gallery extends Component {
     const gallerListUrl = 'https://v4-api.smilebooth.com/api/v4/folders/list-names-noauth'
     superagent.post(gallerListUrl).end((err, res) => {
       this.setState((prevState, props) => {
-        const galleryEntry = res.body.find((gallery) => { return gallery.id == this.props.galleryId })
+        console.log(res.body)
+        const galleryEntry = res.body.find((gallery) => { return gallery.id == this.props.match.params.galleryId })
         return {galleryName: galleryEntry.name}
       })
     })
@@ -46,9 +47,9 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery">
-        <Route path="/gallery/:galleryId/photos/:photoId" render={ ({ match }) => { return <ShadowBox galleryId={this.props.galleryId} photoData={this.state.photoData} /> }} />
+        <Route path="/gallery/:galleryId/photos/:photoId" render={ ({ match }) => { return <ShadowBox galleryId={this.props.match.params.galleryId} photoData={this.state.photoData} /> }} />
         <GalleryControls galleryName={this.state.galleryName} photoData={this.state.photoData} />
-        <GalleryTiles galleryId={this.props.galleryId} photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
+        <GalleryTiles galleryId={this.props.match.params.galleryId} photoData={this.state.photoData} setShadowboxIndex={this.setShadowboxIndex.bind(this)} />
       </div>
     )
   }

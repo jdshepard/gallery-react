@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" component={Index} />
-        <Route path="/gallery/:id" render={ ({ match }) => { return <Gallery galleryId={parseInt(match.params.id, 10)} /> }} />
+        <Route path="/gallery/:galleryId" component={Gallery} />
       </div>
     )
   }
