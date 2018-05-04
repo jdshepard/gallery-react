@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" component={Index} />
-        <Route path="/gallery/:galleryId" component={Gallery} />
+        <Route path="/:galleryId" component={Gallery} />
       </div>
     )
   }

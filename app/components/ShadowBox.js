@@ -47,7 +47,7 @@ class ShadowBox extends Component {
   }
 
   galleryLink() {
-    return `/gallery/${this.props.match.params.galleryId}`
+    return `/${this.props.match.params.galleryId}`
   }
 
   goNext() {
