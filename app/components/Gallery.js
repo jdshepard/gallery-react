@@ -19,7 +19,7 @@ class Gallery extends Component {
 
   componentDidMount() {
     this.getPhotos()
-    this.getGallery()
+    // this.getGallery()
   }
 
   getPhotos() {
