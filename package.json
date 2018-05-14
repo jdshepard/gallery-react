@@ -10,7 +10,7 @@
     "heroku-postbuild": "npm run build",
     "build:watch": "webpack --config ./webpack.config.js/ --watch --env=development",
     "build:prod": "npm run build",
-    "start:watch": "NODE_ENV=development nodemon ./build/server.bundle.js",
+    "start:watch": "NODE_ENV=development nodemon --watch ./build/server.bundle.js",
     "start:dev": "npm-run-all --parallel build:watch start:watch",
     "start": "node ./build/server.bundle.js"
   },
