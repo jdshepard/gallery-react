@@ -53,7 +53,7 @@ class Index extends Component {
     return (
       <div id="indexPage">
         <header>
-          <h1>Galleries</h1>
+          <h1>{gallery.name}</h1>
           <input type="text" placeholder="search" value={this.state.searchInput} onChange={this.updateSearch.bind(this)} />
         </header>
         <ul>
