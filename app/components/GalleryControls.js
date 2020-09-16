@@ -10,7 +10,7 @@ class GalleryControls extends Component {
         <div className="gallery-controls-content">
           <nav>
             <GalleryInfo galleryName={this.props.galleryName} photoData={this.props.photoData} />
-            <GalleryTimeControl photoData={this.props.photoData} />
+            {/* <GalleryTimeControl photoData={this.props.photoData} /> */}
           </nav>
         </div>
       </div>
