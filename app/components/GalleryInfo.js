@@ -12,7 +12,7 @@ class GalleryInfo extends Component {
         <img src={Break} alt="Line Break"/>
         <img src={Text} alt="Text"/>
         <img src={Break} alt="Line Break"/>
-        <img src={Icon} alt="ComEd Logo"/>
+        <img src={Icon} alt="ComEd Logo" style={{position:"absolute",left:0,bottom:0}}/>
       </div>
     )
   }
