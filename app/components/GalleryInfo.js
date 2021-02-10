@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Text from "../images/tmLogo.png";
+import Text from "../images/tmLogo.jpg";
 
 class GalleryInfo extends Component {
   render() {
@@ -8,7 +8,7 @@ class GalleryInfo extends Component {
       <div className="gallery-info gallery-info-title">
 
         <img src={Text} alt="Text"/>
-
+        
       </div>
     )
   }
